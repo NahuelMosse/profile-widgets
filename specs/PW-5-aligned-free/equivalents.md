@@ -1,0 +1,1 @@
+src/modules/widgets/domain/draw.mjs:89 · “-” → “+” · “>rel(a)-rel(b)||a.wi@@b.wi);constP=(x,y)=>” · two different cells tie on the depth key only if 32 times the week gap equals 65 times the weekday gap, which a 7-day week cannot give, so the tie-break never runs
