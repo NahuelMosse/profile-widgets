@@ -15,12 +15,14 @@ not_read: none (no attachments or links)
 - PW-1-ASM-03 · widget responses carry `Cache-Control: public, s-maxage=1800, stale-while-revalidate=86400`, so Vercel's edge serves most requests and the functions stay within the free tier · S2
 - PW-1-ASM-04 · an unknown widget name or theme answers 404 with a plain-text body naming the valid ones; a failure of the GitHub or npm API answers 503 with `Retry-After: 300` and `Cache-Control: no-store` · S1
 - PW-1-ASM-05 · Node functions under api/ with no framework and no build, on the requester's Vercel Hobby account; the GitHub token is the `GITHUB_TOKEN` environment variable of the Vercel project (a read-only fine-grained token); lab.nawi.dev/api/profile/* rewrites here · S2, S3
+- PW-1-ASM-06 · a failure that is not the upstream's (a bug while drawing) answers 500 with `Cache-Control: no-store`; a method other than GET or HEAD answers 405 with `Allow: GET, HEAD` · S1
+- PW-1-ASM-07 · the 404 carries `Cache-Control: public, max-age=300` · S1
 
 ## Tasks
 
 - T1 · S1, PW-1-ASM-01, PW-1-ASM-02 · src/modules/widgets/domain/draw.mjs (rule), src/modules/widgets/domain/themes.mjs (rule), src/modules/widgets/data/github.mjs (data), src/modules/widgets/data/npm.mjs (data), src/modules/widgets/data/repos.json (data), test/widgets.test.mjs · tests: test/widgets.test.mjs "each README widget draws from its data in both themes @PW-1-S1 @PW-1-ASM-01"; test/widgets.test.mjs "views is not a live widget @PW-1-ASM-02"
   new: the drawings and queries are ported from scripts/live.mjs of the NahuelMosse/NahuelMosse repository (another repository, nothing to import)
-- T2 · S2, PW-1-ASM-03, PW-1-ASM-04 · api/profile/[name].mjs (presentation), src/modules/widgets/presentation/respond.mjs (presentation), test/api.test.mjs · tests: test/api.test.mjs "a widget answers an SVG cached at the edge for 1800 s and stale for 86400 s @PW-1-S2 @PW-1-ASM-03"; test/api.test.mjs "an unknown widget or theme answers 404 naming the valid ones @PW-1-ASM-04"; test/api.test.mjs "an upstream failure answers 503 with Retry-After 300 and no-store @PW-1-ASM-04"
+- T2 · S2, PW-1-ASM-03, PW-1-ASM-04, PW-1-ASM-06, PW-1-ASM-07 · api/profile/[name].mjs (presentation), src/modules/widgets/presentation/respond.mjs (presentation), test/api.test.mjs, test/api-errors.test.mjs · tests: test/api-errors.test.mjs "a drawing bug answers 500 no-store and other methods 405 with Allow GET, HEAD @PW-1-ASM-06"; test/api-errors.test.mjs "a 404 is cached for 300 s @PW-1-ASM-07"; test/api.test.mjs "a widget answers an SVG cached at the edge for 1800 s and stale for 86400 s @PW-1-S2 @PW-1-ASM-03"; test/api.test.mjs "an unknown widget or theme answers 404 naming the valid ones @PW-1-ASM-04"; test/api.test.mjs "an upstream failure answers 503 with Retry-After 300 and no-store @PW-1-ASM-04"
   new: no HTTP layer yet
 - T3 · S3, PW-1-ASM-05 · scripts/dev.mjs (presentation), package.json (data), .github/workflows/ci.yml (data), README.md (presentation), test/deploy.test.mjs · tests: test/deploy.test.mjs "the repo deploys on Vercel with no build and no framework @PW-1-S3 @PW-1-ASM-05"
   new: a local server that routes /api like Vercel, for the gate and the attacks
@@ -35,13 +37,17 @@ not_read: none (no attachments or links)
 suite: node --test --test-force-exit test/*.test.mjs
 lint: node --check src/modules/widgets/domain/draw.mjs
 mutate src/modules/widgets/domain/draw.mjs: node --test --test-force-exit test/widgets.test.mjs test/widgets-card.test.mjs test/widgets-limits.test.mjs test/widgets-windows.test.mjs
-mutate src/modules/widgets/presentation/respond.mjs: node --test --test-force-exit test/api.test.mjs
+mutate src/modules/widgets/presentation/respond.mjs: node --test --test-force-exit test/api.test.mjs test/api-errors.test.mjs
 app: node scripts/dev.mjs
 attacks: node .claude/tools/attack.mjs --json --read "/api/profile/streak.svg"
 refactor-tests: the first-round tests asserted the wrong SVG attributes (aria-label text, y vs y1) and crashed Node on Windows on exit; their replacements are test/widgets-card.test.mjs and test/deploy-server.test.mjs, same tags
 no-visual: the SVG widgets are images whose drawing is fixed by golden files from the profile's live.mjs; this repository has no screen
 ```
 
+- declared · ACT-01 · the /api/profile rewrite lives in NahuelMosse/lab's vercel.json (card LAB-1), outside this repository
+- declared · ACT-02 · the other sentences of L1 belong to card LAB-1 of NahuelMosse/lab
+- declared · ACT-05 · "today" is the UTC day, as scripts/live.mjs and GitHub's contribution calendar use it
+- declared · ACT-06 · font.mjs was folded into themes.mjs (5220df9); the escalation in risk.json names a file that no longer exists
 - declared · fault-db · no database: the data comes from the GitHub and npm APIs, whose failure test/api.test.mjs injects
 - declared · mutate · src/modules/widgets/domain/themes.mjs · constant palettes, no decision
 - declared · mutate · src/modules/widgets/data/github.mjs · network adapter: its queries are fixed strings; the tests feed the domain with recorded answers
