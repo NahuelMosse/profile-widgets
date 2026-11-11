@@ -10,7 +10,7 @@ import lists from "../src/modules/widgets/data/repos.json" with { type: "json" }
 import { fixtureFetch, NOW, TOKEN } from "./support/stub-fetch.mjs";
 
 const fetchers = { ...github, ...npm };
-const golden = (name, theme) => readFileSync(new URL(`./golden/${name}.${theme}.svg`, import.meta.url), "utf8");
+const golden = (name, theme) => readFileSync(new URL(`./golden-v2/${name}.${theme}.svg`, import.meta.url), "utf8");
 const ask = (path) => GET(new Request(new URL(path, "https://widgets.example")));
 const TEXT = "text/plain; charset=utf-8";
 
@@ -145,7 +145,7 @@ test("an upstream failure answers 503 with Retry-After 300 and no-store @PW-1-AS
     // A tool card still draws when its repo is not on GitHub.
     const bare = await withFetch(upstream(404, "/repos"), () => ask("/api/profile/tool-http-attack.svg"));
     assert.equal(bare.status, 200);
-    assert.match(await bare.text(), /<svg[^>]* height="130"/);
+    assert.match(await bare.text(), /<svg[^>]* height="176"/);
   });
 
   // Without the token nothing is asked of GitHub.

@@ -51,16 +51,16 @@ const WIDGETS = {
   "npm-package": {
     load: async (name, f, now) => {
       const today = dayOf(now);
-      return { pkg: await f.npmPackage(name, today), today };
+      return { pkg: await f.npmPackage(name, today), today, index: lists.npm.indexOf(name) };
     },
     draw: (_arg, theme, data) => drawNpmPackage(theme, data),
   },
   repo: {
-    load: async (name, f) => ({ repo: await requiredRepo(f, name), description: describe(name) }),
+    load: async (name, f) => ({ repo: await requiredRepo(f, name), description: describe(name), index: lists.featured.indexOf(name) }),
     draw: (_arg, theme, data) => drawRepoCard(theme, data),
   },
   tool: {
-    load: async (name, f) => ({ name, description: describe(name), repo: await f.repo(name) }),
+    load: async (name, f) => ({ name, description: describe(name), repo: await f.repo(name), index: lists.npm.indexOf(name) }),
     draw: (_arg, theme, data) => drawToolCard(theme, data),
   },
 };
