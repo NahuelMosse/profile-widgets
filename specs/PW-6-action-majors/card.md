@@ -12,7 +12,7 @@ not_read: none (no attachments or links)
 
 ## Tasks
 
-- T1 · S1, PW-6-ASM-01 · test/ci-action-majors.test.mjs · tests: test/ci-action-majors.test.mjs "the repo deploys on Vercel with no build and no framework @PW-6-S1 @PW-6-ASM-01 @PW-1-S3 @PW-1-ASM-05"
+- T1 · S1, PW-6-ASM-01 · test/ci-action-majors.test.mjs (rule) · tests: test/ci-action-majors.test.mjs "the repo deploys on Vercel with no build and no framework @PW-6-S1 @PW-6-ASM-01 @PW-1-S3 @PW-1-ASM-05"
 
 ## Changes to existing behavior
 
