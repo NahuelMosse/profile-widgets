@@ -38,6 +38,8 @@ mutate src/modules/widgets/domain/draw.mjs: node --test --test-force-exit test/w
 mutate src/modules/widgets/presentation/respond.mjs: node --test --test-force-exit test/api.test.mjs
 app: node scripts/dev.mjs
 attacks: node .claude/tools/attack.mjs --json --read "/api/profile/streak.svg" --read "/api/profile/nope.svg"
+refactor-tests: the first-round tests asserted the wrong SVG attributes (aria-label text, y vs y1) and crashed Node on Windows on exit; their replacements are test/widgets-card.test.mjs and test/deploy-server.test.mjs, same tags
+no-visual: the SVG widgets are images whose drawing is fixed by golden files from the profile's live.mjs; this repository has no screen
 ```
 
 - declared · fault-db · no database: the data comes from the GitHub and npm APIs, whose failure test/api.test.mjs injects
