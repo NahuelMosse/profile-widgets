@@ -49,6 +49,10 @@ no-visual: the SVG widgets are images whose drawing is fixed by golden files fro
 - declared · mutate · api/profile/[name].mjs · Vercel entry point that only wires respond.mjs to the adapters
 - declared · mutate · scripts/dev.mjs · the local server of the gate, not shipped
 
+## Look
+
+plain: the SVG widgets are images drawn exactly like the profile live.mjs draws them (golden files); this repository has no screen, so no design line, component set or motion rule applies
+
 ## Log
 
 - L1 · yo queria armar el laboratorio, podria ser el momento de armarlo, lab.nawi.dev, la idea es no pagar por servidor aviso · (answer to "what is lab.nawi.dev") Osea quiero poner ahi mil paginas, tipo ahi metemos cebador, sonria y miga y ademas otras cosas que quiera levantar, como esta cosa para los svg · (answer to "where do we host it for free") Vercel Hobby (Recommended) · el lab no puede salir de poc, tenelo en cuenta · (answer to "where do the widgets live") Repo aparte en mvp (Recommended)
