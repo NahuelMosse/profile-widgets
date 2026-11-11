@@ -21,7 +21,7 @@ const sparkPath = (svg) => svg.match(/<path d="(M[^"]*)" pathLength/)[1];
 const fills = (svg) => [...svg.matchAll(/fill="(#[0-9a-f]{6})" class="f"/g)].map((m) => m[1]);
 const repoOf = (over = {}) => ({ name: "demo", description: "From GitHub", stargazerCount: 4, pushedAt: "2026-11-01T10:00:00Z", primaryLanguage: { name: "Rust" }, ...over });
 
-test("the drawings hold at the edges of their numbers @PW-2-S1 @PW-2-ASM-01", () => {
+test("the drawings hold at the edges of their numbers @PW-2-S1 @PW-2-ASM-01 @PW-1-S1 @PW-1-ASM-01", () => {
   // Contribution levels on the log scale of the busiest day.
   assert.deepEqual(fills(drawHeatmap("dark", { calendar: calendarOf([1, 10, 11, 50, 100]) })), [1, 2, 3, 4, 4].map((l) => level(THEMES.dark, l)));
 
@@ -50,7 +50,7 @@ test("the drawings hold at the edges of their numbers @PW-2-S1 @PW-2-ASM-01", ()
   assert.match(drawRepoCard("dark", { repo: repoOf({ description: "Theirs" }), description: "Mine", index: 0 }), /y="104"[^>]*>Mine</);
 });
 
-test("the download counts hold at their windows @PW-2-S1 @PW-2-ASM-01", () => {
+test("the download counts hold at their windows @PW-2-S1 @PW-2-ASM-01 @PW-1-S1 @PW-1-ASM-01", () => {
   assert.match(npmOf(dailyOf(28, 3)), />WEEKLY DOWNLOADS/);
   assert.match(npmOf(dailyOf(27, 3)), />DAILY DOWNLOADS/);
   assert.equal(sparkPath(npmOf(dailyOf(29, (i) => i + 1))), "M560.0 195.5 L667.0 177.5 L774.0 151.7 L881.0 125.8 L988.0 100.0");
@@ -68,7 +68,7 @@ test("the download counts hold at their windows @PW-2-S1 @PW-2-ASM-01", () => {
   assert.match(drawNpmPackage("dark", { pkg, today: "2026-11-11", index: 0 }), />\+5 this week</);
 });
 
-test("the building card holds at its limits @PW-2-S1 @PW-2-ASM-01", () => {
+test("the building card holds at its limits @PW-2-S1 @PW-2-ASM-01 @PW-1-S1 @PW-1-ASM-01", () => {
   const long = ["a", "b", "c"].map((c) => c.repeat(38)).join(" ");
   const base = { events: [], descriptions: { miga: { description: long } }, user: "NahuelMosse", now: NOW };
   const at = (n) => drawBuilding("dark", { ...base, repos: [{ name: "miga", primaryLanguage: null, pushedAt: hours(n) }] });
@@ -83,7 +83,13 @@ test("the building card holds at its limits @PW-2-S1 @PW-2-ASM-01", () => {
   assert.equal(ago(24), "1 d ago");
 });
 
-test("a log-scale level changes exactly at its boundary and a full window has no empty week @PW-2-S1 @PW-2-ASM-01", () => {
+test("a log-scale level changes exactly at its boundary and a full window has no empty week @PW-2-S1 @PW-2-ASM-01 @PW-1-S1 @PW-1-ASM-01", () => {
   assert.deepEqual(fills(drawHeatmap("dark", { calendar: calendarOf([4, 15]) })), [3, 4].map((l) => level(THEMES.dark, l)));
   assert.equal(sparkPath(npmOf(dailyOf(28, 10))).split(" L").length, 4);
+});
+
+test("the latest reviewable work shows its date without the time @PW-2-S1 @PW-2-ASM-01", () => {
+  const events = [{ type: "PullRequestEvent", created_at: "2026-11-10T09:30:00Z", repo: { name: "NahuelMosse/miga" }, payload: { action: "opened", number: 7 } }];
+  const svg = drawBuilding("dark", { events, descriptions: { miga: { description: "Demo" } }, user: "NahuelMosse", now: NOW, repos: [{ name: "miga", primaryLanguage: null, pushedAt: hours(2) }] });
+  assert.match(svg, />2026-11-10</);
 });

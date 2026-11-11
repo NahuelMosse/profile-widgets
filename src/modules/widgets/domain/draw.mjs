@@ -181,7 +181,7 @@ export function drawRepoCard(theme, data) {
     third(T, index, "REPOSITORY", r.name, cardLines(text), metaRow(T, r)));
 }
 
-// A dev-kit tool's card: both an npm package and a Claude Code skill; the meta row only when its repo is known.
+// A dev-kit tool's card: both an npm package and an agent skill; the meta row only when its repo is known.
 export function drawToolCard(theme, data) {
   const T = themeOf(theme);
   need(data, "name", "index");

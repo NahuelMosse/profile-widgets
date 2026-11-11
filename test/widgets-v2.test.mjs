@@ -11,7 +11,7 @@ const FULL_WIDTH = 1012;
 const THIRD_WIDTH = 337;
 const THIRD_HEIGHT = 176;
 
-test("each widget draws what the profile's new live.mjs draws, in both themes, full width 1012 and thirds 337 by 176 @PW-2-S1 @PW-2-ASM-01", async () => {
+test("each widget draws what the profile's new live.mjs draws, in both themes, full width 1012 and thirds 337 by 176 @PW-2-S1 @PW-2-ASM-01 @PW-1-S1 @PW-1-ASM-01", async () => {
   const widgets = await recordedWidgets();
   assert.deepEqual(Object.keys(widgets).sort(), widgetNames(lists).sort());
   for (const [name, draw] of Object.entries(widgets)) {
