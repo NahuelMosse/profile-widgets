@@ -33,6 +33,7 @@ refactor-tests: the drawings changed, so the tests that compare against the old 
 no-visual: the SVG widgets are images whose drawing is fixed by golden files from the profile's live.mjs; this repository has no screen
 ```
 
+- declared · font.mjs was folded into themes.mjs (5220df9); a risk escalation that names src/modules/widgets/domain/font.mjs names a file that no longer exists
 - declared · fault-db · no database: the data comes from the GitHub and npm APIs, whose failure test/api.test.mjs injects
 - declared · mutate · scripts/dev.mjs · the local server of the gate, not shipped
 
@@ -48,3 +49,4 @@ plain: the SVG widgets are images drawn exactly like the profile live.mjs draws 
 - L4 · 2026-11-11 · replaces: test/widgets-limits.test.mjs "the download counts hold at their windows @PW-1-S1 @PW-1-ASM-01" · the drawings changed in NM-1, so its coordinates describe drawings that no longer exist · by: test/widgets-v2-limits.test.mjs "the download counts hold at their windows @PW-2-S1 @PW-2-ASM-01 @PW-1-S1 @PW-1-ASM-01"
 - L5 · 2026-11-11 · replaces: test/widgets-limits.test.mjs "the building card holds at its limits @PW-1-S1 @PW-1-ASM-01" · the drawings changed in NM-1, so its coordinates describe drawings that no longer exist · by: test/widgets-v2-limits.test.mjs "the building card holds at its limits @PW-2-S1 @PW-2-ASM-01 @PW-1-S1 @PW-1-ASM-01"
 - L6 · 2026-11-11 · replaces: test/widgets-windows.test.mjs "a log-scale level changes exactly at its boundary and a full window has no empty week @PW-1-S1 @PW-1-ASM-01" · the drawings changed in NM-1, so its coordinates describe drawings that no longer exist · by: test/widgets-v2-limits.test.mjs "a log-scale level changes exactly at its boundary and a full window has no empty week @PW-2-S1 @PW-2-ASM-01 @PW-1-S1 @PW-1-ASM-01"
+- L7 · 2026-11-11 · kit: no declaration fits a module that draws images (SVG) rather than screens: no-visual is refused because the diff changes markup, and the visual lens asks for screen probes; the drawing is pinned by test/golden-v2 instead. Closed with the no-visual check failed for that reason
