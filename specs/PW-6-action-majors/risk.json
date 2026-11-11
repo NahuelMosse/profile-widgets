@@ -1,0 +1,12 @@
+{
+  "size": "small",
+  "review": "low",
+  "lenses": [],
+  "modules": [],
+  "signals": [],
+  "words": [],
+  "files": [
+    "test/ci-action-majors.test.mjs"
+  ],
+  "tasks": 1
+}
