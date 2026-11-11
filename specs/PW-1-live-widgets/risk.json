@@ -1,0 +1,31 @@
+{
+  "size": "large",
+  "review": "medium",
+  "lenses": [
+    "contract"
+  ],
+  "modules": [
+    "api"
+  ],
+  "signals": [
+    "ci"
+  ],
+  "words": [],
+  "files": [
+    "src/modules/widgets/domain/draw.mjs",
+    "src/modules/widgets/domain/themes.mjs",
+    "src/modules/widgets/data/github.mjs",
+    "src/modules/widgets/data/npm.mjs",
+    "src/modules/widgets/data/repos.json",
+    "test/widgets.test.mjs",
+    "api/profile/[name].mjs",
+    "src/modules/widgets/presentation/respond.mjs",
+    "test/api.test.mjs",
+    "scripts/dev.mjs",
+    "package.json",
+    ".github/workflows/ci.yml",
+    "README.md",
+    "test/deploy.test.mjs"
+  ],
+  "tasks": 3
+}
