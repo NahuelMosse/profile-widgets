@@ -1,4 +1,4 @@
-import { level, mix, STYLE, themeOf } from "./themes.mjs";
+import { level, mix, SHADOW, STYLE, themeOf } from "./themes.mjs";
 
 const STATIC_WIDGETS = ["streak", "heatmap", "skyline", "building", "npm"];
 const PREFIXED_WIDGETS = [
@@ -7,7 +7,9 @@ const PREFIXED_WIDGETS = [
   { prefix: "tool-", kind: "tool", list: "npm" },
 ];
 
-export function widgetNames({ featured, npm }) {
+export function widgetNames(lists) {
+  need(lists, "featured", "npm");
+  const { featured, npm } = lists;
   return [...STATIC_WIDGETS, ...npm.map((p) => `npm-${p}`), ...featured.map((r) => `repo-${r}`), ...npm.map((p) => `tool-${p}`)];
 }
 
@@ -68,7 +70,7 @@ export function drawSkyline(theme, data) {
     const h = n ? 5 + 150 * Math.sqrt(n / max) : 1.5;
     const x = ox + wi * e1[0] + di * e2[0], y = oy + wi * e1[1] + di * e2[1];
     const a = [x, y], b = [x + e1[0], y + e1[1]], c = [x + e1[0] + e2[0], y + e1[1] + e2[1]], dd = [x + e2[0], y + e2[1]];
-    const top = level(T, contributionLevel(n, max)), side = mix(top, "#000000", T.shade), front = mix(top, "#000000", T.shade * 0.55);
+    const top = level(T, contributionLevel(n, max)), side = mix(top, SHADOW, T.shade), front = mix(top, SHADOW, T.shade * 0.55);
     const up = (p) => [p[0], p[1] - h];
     return `<g class="r" style="animation-delay:${(wi * 0.018).toFixed(3)}s"><title>${date}: ${n}</title>`
       + `<polygon points="${P(...dd)} ${P(...c)} ${P(...up(c))} ${P(...up(dd))}" fill="${front}"/>`
@@ -164,7 +166,7 @@ ${cardText(T, cardLines(text))}
 ${metaRow(T, r)}`);
 }
 
-// A dev-kit tool's card: both an npm package and a Claude Code skill; the meta row only when its repo is known.
+// A tool's card: name, description and, when its repo is known, the meta row.
 export function drawToolCard(theme, data) {
   const T = themeOf(theme);
   need(data, "name");
@@ -252,17 +254,17 @@ export function drawNpm(theme, data) {
   const T = themeOf(theme);
   need(data, "packages", "today");
   const { packages } = data;
-  const window = downloadWindow(packages, data.today);
+  const span = downloadWindow(packages, data.today);
   const total = packages.reduce((a, k) => a + k.total, 0);
-  const week = packages.reduce((a, k) => a + lastWeek(k, window.end), 0);
+  const week = packages.reduce((a, k) => a + lastWeek(k, span.end), 0);
   const W = 1100, H = 272;
   const label = `npm downloads of the dev-kit tools since publication: ${fmt(total)} in total, ${fmt(week)} in the last 7 days. `
-    + packages.map((k) => `${k.p} v${k.version}: ${fmt(k.total)}, ${fmt(lastWeek(k, window.end))} in the last 7 days`).join(". ");
+    + packages.map((k) => `${k.p} v${k.version}: ${fmt(k.total)}, ${fmt(lastWeek(k, span.end))} in the last 7 days`).join(". ");
   const { counter, keys, clip } = rollingCounter(T, total);
   return svgDocument(W, H, label, `<style>${keys}</style><defs>${clip}</defs>${title(T, "NPM · ALL-TIME DOWNLOADS · 3 PACKAGES")}
 <g clip-path="url(#win)">${counter}</g>
 <text x="24" y="244" fill="${T.fg}" font-size="16" letter-spacing="1" class="u" style="animation-delay:1.2s"><tspan fill="${T.red}">+${fmt(week)}</tspan> in the last 7 days</text>
-${sparkline(T, window, W)}`);
+${sparkline(T, span, W)}`);
 }
 
 const HOUR_MS = 36e5;

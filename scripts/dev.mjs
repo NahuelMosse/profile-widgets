@@ -5,7 +5,7 @@ const DEFAULT_PORT = 3000;
 const WIDGET_PATH = /^\/api\/profile\/[^/]+$/;
 
 function send(res, status, headers, body) {
-  res.writeHead(status, headers);
+  res.writeHead(status, { ...headers, Connection: "close" });
   res.end(body);
 }
 
