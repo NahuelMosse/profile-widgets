@@ -15,7 +15,7 @@ export async function fixtureFetch(input, init = {}) {
   if (hostname === "api.github.com") {
     if (pathname === "/graphql") return json(read("github-user"));
     if (pathname === "/search/issues") return json(read("github-merged"));
-    if (pathname === "/users/NahuelMosse/events/public") return json(read("github-events"));
+    if (pathname.endsWith("/events/public")) return json(read("github-events"));
     const repo = pathname.match(/^\/repos\/NahuelMosse\/([^/]+)$/)?.[1];
     if (repo) return existsSync(fixturePath(`github-repo-${repo}`)) ? json(read(`github-repo-${repo}`)) : json({ message: "Not Found" }, 404);
   }
