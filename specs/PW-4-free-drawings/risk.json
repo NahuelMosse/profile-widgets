@@ -1,0 +1,28 @@
+{
+  "size": "small",
+  "review": "low",
+  "lenses": [],
+  "modules": [],
+  "signals": [
+    "screen"
+  ],
+  "words": [],
+  "files": [
+    "src/modules/widgets/domain/draw.mjs",
+    "test/golden",
+    "test/widgets-free.test.mjs",
+    "test/widgets-free-limits.test.mjs",
+    "test/api-free.test.mjs",
+    "test/api-camo-free.test.mjs"
+  ],
+  "tasks": 2,
+  "declared": [
+    {
+      "lens": "visual",
+      "why": "the SVG widgets are images whose drawing is fixed by golden files from the profile's live.mjs; this repository has no screen",
+      "files": [
+        "src/modules/widgets/domain/draw.mjs"
+      ]
+    }
+  ]
+}
