@@ -42,7 +42,19 @@
       "reason": "profile web not chosen at install",
       "by": "person",
       "at": "2026-11-11",
-      "signalsAtDecision": []
+      "signalsAtDecision": [
+        "markup in src/modules/widgets/domain/draw.mjs"
+      ],
+      "confirmed": [
+        {
+          "at": "2026-11-11",
+          "card": "PW-1-live-widgets",
+          "reason": "the SVG widgets are images fixed by golden files from the profile's live.mjs; this repository has no screen, so the markup in draw.mjs is not a UI",
+          "signals": [
+            "markup in src/modules/widgets/domain/draw.mjs"
+          ]
+        }
+      ]
     },
     "api": {
       "state": "on",
