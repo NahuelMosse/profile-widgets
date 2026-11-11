@@ -43,3 +43,4 @@ plain: the SVG widgets are images drawn exactly like the profile live.mjs draws 
 ## Log
 
 - L1 · los widgets los podes pasar por el kit en modo poc para que se vean bien todos juntos en el readme porfa
+- L2 · 2026-11-11 · replaces: test/widgets-card.test.mjs "each README widget draws from its data in both themes @PW-1-S1 @PW-1-ASM-01" · the drawings changed in NM-1 (sizes, frame, band, type scale), so its golden files and coordinates describe drawings that no longer exist · by: test/widgets-v2.test.mjs "each widget draws what the profile's new live.mjs draws, in both themes, full width 1012 and thirds 337 by 176 @PW-2-S1 @PW-2-ASM-01"
