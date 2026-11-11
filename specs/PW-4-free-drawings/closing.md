@@ -21,7 +21,7 @@ me gustaba el readme mas como se veia antes del redise;o del kit la verdad, me g
 - 3 · every tag is a spec of card.md — 4 tagged files
 - 4 · each ASM is tagged or declared uncovered — 1 of 1 tagged
 - 5 · no tagged test touched since RED — declared refactor-tests: the drawings go back to PW-1's, so the PW-2 tests that compare against golden-v2 and the v2 coordinates, and the two PW-1/PW-3 tests that read golden-v2 or the v2 height, are contradicted; their replacements carry their tags and the old tests are removed from their files; 0 files tagged for PW-4 edited since RED; the frozen tests of earlier cards it edited are listed in ## Needs a person
-- 6 · diff and Tasks agree — 41 files in the diff against 6359396f1e29680dbc6c61612a29c7c90282e4a1~1; src/modules/widgets/presentation/respond.mjs is in Tasks, not in the diff
+- 6 · diff and Tasks agree — 42 files in the diff against 6359396f1e29680dbc6c61612a29c7c90282e4a1~1; src/modules/widgets/presentation/respond.mjs is in Tasks, not in the diff
 - 8 · judge · skipped — risk.json says review: low
 - 9 · required.mjs — mutation, linter and scope ran and passed on this code
 - visual · declared not visual: the SVG widgets are images whose drawing is fixed by golden files from the profile's live.mjs; this repository has no screen (no-visual passed)
@@ -38,6 +38,9 @@ no judge: risk small · low; the gate is the whole review
 ## Assumptions
 1 of 1 tagged
 
+## Kit notes
+- no-visual refuses any card whose diff changes markup lines of an SVG-drawing module, and no other declaration fits a module with no screen; the drawing is pinned by test/golden. Closed with the no-visual check failed for that reason
+
 ## Needs a person
 - frozen test edited by the refactor (the drawings go back to PW-1's, so the PW-2 tests that compare against golden-v2 and the v2 coordinates, and the two PW-1/PW-3 tests that read golden-v2 or the v2 height, are contradicted; their replacements carry their tags and the old tests are removed from their files): test/api-camo.test.mjs (+1 −56); confirm no assertion was loosened: `git diff 6359396f1..HEAD -- test/api-camo.test.mjs`
 - frozen test edited by the refactor (the drawings go back to PW-1's, so the PW-2 tests that compare against golden-v2 and the v2 coordinates, and the two PW-1/PW-3 tests that read golden-v2 or the v2 height, are contradicted; their replacements carry their tags and the old tests are removed from their files): test/api.test.mjs (+1 −58); confirm no assertion was loosened: `git diff 6359396f1..HEAD -- test/api.test.mjs`
@@ -53,7 +56,7 @@ no judge: risk small · low; the gate is the whole review
 - grade: mvp — the profile README depends on it every day
 
 Cost: could not run: no message of this repo since 2026-11-11T18:11:10-03:00
-close.mjs seal: PW-4 sha256:9fff7ba227be1bb0d61a8f4064d6ed0b244eab2b58136d45bad87f4220365fed
+close.mjs seal: PW-4 sha256:0f5f119b024dc7231315d638368da68828b496b2a5dc1aa3c91a982c58269887
 <!-- close.mjs:end -->
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
