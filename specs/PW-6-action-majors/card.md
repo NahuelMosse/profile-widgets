@@ -39,3 +39,4 @@ plain: no screen; the card only replaces a test of the CI workflow
 ## Log
 
 - L1 · dale, metamos todas menos Portfolio#13, con los arreglos correspondientes
+- L2 · 2026-11-11 · replaces: test/deploy-server.test.mjs "the repo deploys on Vercel with no build and no framework @PW-1-S3 @PW-1-ASM-05" · it pins actions/checkout and actions/setup-node to exactly @v5, which Dependabot PRs #8 and #9 move to v7 · by: test/ci-action-majors.test.mjs "the repo deploys on Vercel with no build and no framework @PW-6-S1 @PW-6-ASM-01 @PW-1-S3 @PW-1-ASM-05"
