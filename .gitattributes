@@ -1,3 +1,4 @@
 * text=auto
 test/golden/*.svg -text
+test/golden-v3/*.svg -text
 test/fixtures/*.json -text
