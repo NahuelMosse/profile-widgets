@@ -1,0 +1,3 @@
+src/modules/widgets/domain/draw.mjs:52 · “4” → “5” · “=>(n===0?0:Math.min(@@,1+Math.floor((Math.” · the logarithm of n over the logarithm of max + 1 is below 1, so 1 + floor(4 * ratio) never exceeds 4 and the cap is never reached
+src/modules/widgets/domain/draw.mjs:189 · “10” → “11” · “ISOString().slice(0,@@);}//Thewindowofthed” · the shifted day is only compared with 10-character days by `>`, and a day never lies between D and D plus one extra character
+src/modules/widgets/domain/draw.mjs:66 · “-” → “+” · “1]+b.di*e2[1])||a.wi@@b.wi);constP=(x,y)=>” · two different cells tie on the depth key only if 11 times the week gap equals 20 times the weekday gap, which a 7-day week cannot give, so the tie-break never runs

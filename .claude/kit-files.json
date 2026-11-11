@@ -1,0 +1,786 @@
+{
+  ".claude/AUTONOMY.md": {
+    "module": "core",
+    "sha256": "4802a9e438d193844e4b326fb0a93112e4d5e80480635a7e46f126d1d7ff5a51"
+  },
+  ".claude/METHOD.md": {
+    "module": "core",
+    "sha256": "d8058adfa4addf6fa3ee876edb30aad826e50aefe7741c1ae42b8e11e76338f7"
+  },
+  ".claude/ORCHESTRATE.md": {
+    "module": "core",
+    "sha256": "1c99a066ad84c4a01877522bffe922a357cbc33127e13690afda25ba559796b5"
+  },
+  ".claude/agents/archivist.md": {
+    "module": "core",
+    "sha256": "7d0662e532c52c8481581c180a16efe15d70f7b1f2ddcb84b57a0a01f29fb446"
+  },
+  ".claude/agents/builder.md": {
+    "module": "core",
+    "sha256": "5b5c9f14a8a17f8d9b3256beea031259bd3734ad056cea5c2a099a6a2d7c6e64"
+  },
+  ".claude/agents/card-runner.md": {
+    "module": "core",
+    "sha256": "2e1d7d3711499c891bf23fd1542c3d7b92a92f186b560c9234a50ecc44624166"
+  },
+  ".claude/agents/executor.md": {
+    "module": "core",
+    "sha256": "962fc52f992750af6bf404b0269e3114c89173aebf3a905098535eb927d07034"
+  },
+  ".claude/agents/grunt.md": {
+    "module": "core",
+    "sha256": "3911149dce47a305788eaf0b0426bd8aea3c7bd55d7fc7be38d31b7d12200da2"
+  },
+  ".claude/agents/judge.md": {
+    "module": "core",
+    "sha256": "84613c86e142f1b992d09353a080ef99e560035e5e4b78a32b8b5f21c84a7661"
+  },
+  ".claude/agents/oracle.md": {
+    "module": "core",
+    "sha256": "6d0dbbb048a24146114e584bfa6a7b5f75f2874af1c2d1988f72b6286cb37a8c"
+  },
+  ".claude/agents/planner.md": {
+    "module": "core",
+    "sha256": "9264479d72cfc96d4e9e9dccfdf737ce9b666ced4aaade8af8734ba118dd21e6"
+  },
+  ".claude/agents/runner.md": {
+    "module": "core",
+    "sha256": "89cc713efbf02a50606feba8089ff328b6c58ec1fcb9880688ef788be17ac5ba"
+  },
+  ".claude/agents/scout.md": {
+    "module": "core",
+    "sha256": "c084e493e02004a7d587bf4e303072072982c04f09859faa55f35c4a68269060"
+  },
+  ".claude/commands/card.md": {
+    "module": "core",
+    "sha256": "88523f0bc01c249a5324b8d5bd4fa97ec34c2268e53d1ba01af81782fa541f0a"
+  },
+  ".claude/commands/close.md": {
+    "module": "core",
+    "sha256": "ab899fa27e38d805eb2d615d057e5ad060ff2c6a6c3d86795fbe6595c647020a"
+  },
+  ".claude/hooks/commit-why.mjs": {
+    "module": "core",
+    "sha256": "e50e33a7f74e2e73b5b7e38e63e262f0daccbe66e7ed2c2aff7dae8ab164ebc5"
+  },
+  ".claude/hooks/context-cap.mjs": {
+    "module": "core",
+    "sha256": "041945647c1141ef9221ca11902e58a911d873686b306a100566b51080811574"
+  },
+  ".claude/hooks/delegate-code.mjs": {
+    "module": "core",
+    "sha256": "4eae53847fe2db429bff9326ebdf44f277b9ee2eb5d8e7683056ba8222239aa1"
+  },
+  ".claude/hooks/edit-count.mjs": {
+    "module": "core",
+    "sha256": "ffedf4d8e11a9d4d8fed3c5551b0ea57ee5fecebc35a7ea152e86a6d28015693"
+  },
+  ".claude/hooks/guard-shell.mjs": {
+    "module": "core",
+    "sha256": "037e7c062c034903bcc0f711e2bf1583dd472082360137ecbefe728d805e2338"
+  },
+  ".claude/hooks/guard.mjs": {
+    "module": "core",
+    "sha256": "d30dd25e47b674c93c49f05e6e2253c4ec541463c246b87ae1099db7fb63f669"
+  },
+  ".claude/hooks/kit-feedback.mjs": {
+    "module": "core",
+    "sha256": "e66f366660df74853265dbe8a291508f48f7f09acfa36c35044249c4e72590a1"
+  },
+  ".claude/hooks/light-images.mjs": {
+    "module": "core",
+    "sha256": "7714d8dcb0d8e18563708b6e2e08bd417993075fb5b994ef1eb0ffd8d78e23a4"
+  },
+  ".claude/hooks/no-pending-close.mjs": {
+    "module": "core",
+    "sha256": "df959b6f0749007dbe40638fc29ebaf1bd4ddc288972852cbbc1ab9ee516330b"
+  },
+  ".claude/hooks/publish.mjs": {
+    "module": "core",
+    "sha256": "706246c43a914a867380a70f58cac64e43cca71f790ad929fe20cdf8caaacaec"
+  },
+  ".claude/hooks/require-at-close.mjs": {
+    "module": "core",
+    "sha256": "a14bb1729badb700d240cd8dcf3ba0d5699868dbf6f1161743af0461867df57d"
+  },
+  ".claude/hooks/require-bar.mjs": {
+    "module": "core",
+    "sha256": "54d18ac13d923ec88f556c1ee9e9688107b672f762cc0b9e937a049562e42c85"
+  },
+  ".claude/hooks/review-cap.mjs": {
+    "module": "core",
+    "sha256": "d6c551cb015e490477c8ea39c827ad991c33519145757ce48be23918d1274b0a"
+  },
+  ".claude/hooks/session-record.mjs": {
+    "module": "core",
+    "sha256": "c550e13ae89fe1c1af1d366f26592c532073a34d89fcc386ec6c961768ecf1a7"
+  },
+  ".claude/hooks/shell-writes.mjs": {
+    "module": "core",
+    "sha256": "582c807870d21e801fb847a0dcc412a329e180bdf7010027d193691e640826cb"
+  },
+  ".claude/hooks/time-cap.mjs": {
+    "module": "core",
+    "sha256": "285fe01b73401140d9b35061ea4b49e98526daa3d040782a91092944904c4545"
+  },
+  ".claude/hooks/trim-output.mjs": {
+    "module": "core",
+    "sha256": "371e82845bc5094745d4ffac0226065f0ce84ccaf869cefb16ff47ec48625e50"
+  },
+  ".claude/hooks/turn-budget.mjs": {
+    "module": "core",
+    "sha256": "94042bfb0f738329ac065989dafc6b35b16afcca14d58d777e53f821c386a6c9"
+  },
+  ".claude/hooks/worktree-sweep.mjs": {
+    "module": "core",
+    "sha256": "8903af653afa7abadfb66b0be5df52005c2efba0026b6e89d9f7b8d7e3d5cf89"
+  },
+  ".claude/modules.json": {
+    "module": "core",
+    "sha256": "c6f59762731ad58ce40599ea3b8604fb2855c19b88e8e2fb62a5f001d9019b1c"
+  },
+  ".claude/profiles/backend.md": {
+    "module": "profile:backend",
+    "sha256": "4a48e8ebddec914e61d210f8eefe2159f5240180d15ed74406088fb45ce25bf1"
+  },
+  ".claude/reference/architecture.md": {
+    "module": "core",
+    "sha256": "93d75e5ebe2a9db5c50aba4e3280fbbd6598650945a0d91b4cbcaa00e95c43cc"
+  },
+  ".claude/reference/ci-cd.md": {
+    "module": "ci",
+    "sha256": "87d4d21b16ccd2ca1cc7e74ce252205ef38dcb5366f5f67503323de732d65819"
+  },
+  ".claude/reference/code-patterns.md": {
+    "module": "core",
+    "sha256": "7ca909e44b0e352806b6ef72d19ce628e8921be3c108646ed326fc88a2e5c5a9"
+  },
+  ".claude/reference/criteria.md": {
+    "module": "core",
+    "sha256": "93e33c0df0d28a94d081e089b0deba5fee4b1975d273594241eb2b2133142283"
+  },
+  ".claude/reference/database.md": {
+    "module": "data",
+    "sha256": "6ea581d8386ea7575ddfabeaf7146aa62830d4fe476f5d3491a78d2761e8ac95"
+  },
+  ".claude/reference/dependencies.md": {
+    "module": "core",
+    "sha256": "85ca78d91380daad87a0dcbdf20b8ccb85846a11c914a00097d6c608d02a6a1b"
+  },
+  ".claude/reference/errors.md": {
+    "module": "core",
+    "sha256": "92cb76a0cb94c31382c5097c34f0ee46229bf702fa0896d99f96d29491ff14f6"
+  },
+  ".claude/reference/http-defaults.md": {
+    "module": "profile:backend",
+    "sha256": "f758ebcf05e583e56019c95011b1d3ef62046e480de3a70974a2d7b0299f542d"
+  },
+  ".claude/reference/infrastructure.md": {
+    "module": "infra",
+    "sha256": "49af6aa91991a230d04f051e147e60f5757de4f93d2bb9be8215e3a928d10e87"
+  },
+  ".claude/reference/legal.md": {
+    "module": "core",
+    "sha256": "e273b056c92ca71c06fb9e32ad7c49e8b1e7a3be4b9dfd1beee0b39cafefcdfe"
+  },
+  ".claude/reference/lenses.md": {
+    "module": "core",
+    "sha256": "ce93f5e06fb14921435bd0108ed3cbad53d5549bc608e3c3cc6c6a273bd8b5d0"
+  },
+  ".claude/reference/observability.md": {
+    "module": "observability",
+    "sha256": "728b0759bfee23bbd1e474713b14d5d8f64242e642d6da2fe96ac641106ebb73"
+  },
+  ".claude/reference/patterns.md": {
+    "module": "core",
+    "sha256": "44f168008ff0a5c9544071ee323badc3cee5a94b6c10cdc6c5021e0211ccd9a8"
+  },
+  ".claude/reference/performance.md": {
+    "module": "core",
+    "sha256": "70ca0d450643c56578eb0889e84242ed12843c5bcc05feaed963c8750d90ae2f"
+  },
+  ".claude/reference/security.md": {
+    "module": "core",
+    "sha256": "6c2294bab37ca9491cc9992411dab4625178c92b723a4d1a986aaeeb7bfff82c"
+  },
+  ".claude/reference/structure.md": {
+    "module": "core",
+    "sha256": "ad10e91eeecf7b160b9873ac0b05ca2e1d0d8f35e52c2c6f914dab715243b5a7"
+  },
+  ".claude/reference/testing.md": {
+    "module": "core",
+    "sha256": "784c06ed5f92fc0273f91a48e113f7393c508d5244c369d2c24a92efbccedf03"
+  },
+  ".claude/rules/architecture.md": {
+    "module": "core",
+    "sha256": "997a9ff0419d77973e839c9510650fe5c210b0da7096698405aecbbd899fd1d3"
+  },
+  ".claude/rules/semgrep/sdd.yml": {
+    "module": "core",
+    "sha256": "680fe21976de3f3b3e182f223b11da2f047465dca13453462f2120e7f27b18f9"
+  },
+  ".claude/rules/speed.md": {
+    "module": "core",
+    "sha256": "b0400e865fe3a06947bc13ca1143b0844f2e3a42b6376a1ec3740b0881107f2c"
+  },
+  ".claude/settings.json": {
+    "module": "core",
+    "sha256": "ef2143c841676a2714fb884340a285ece5c2ee52c0e7a3975dea7f7e42660c67"
+  },
+  ".claude/skills/PROVENANCE.md": {
+    "module": "core",
+    "sha256": "5224cc87b7e8551ec2c2dfed39dbcb267d22d3510e1494bd1daafc61d9971ce9"
+  },
+  ".claude/skills/break-ui/CATALOG.md": {
+    "module": "core",
+    "sha256": "f21a0b2d72f3bc2d8438abbf1ea680f19db5153f7383492f4f2020e40670524a"
+  },
+  ".claude/skills/break-ui/LICENSE": {
+    "module": "core",
+    "sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
+  },
+  ".claude/skills/break-ui/SKILL.md": {
+    "module": "core",
+    "sha256": "77bd554d0e4948ddab3781170c4d9254113d06b0f0477f24c8017854815f2dee"
+  },
+  ".claude/skills/choreograph/LICENSE": {
+    "module": "core",
+    "sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
+  },
+  ".claude/skills/choreograph/RECIPES.md": {
+    "module": "core",
+    "sha256": "b61f03b5c47398cf71ce9db4157cc919617228981b1d74a72d6a5fa27e4aaad2"
+  },
+  ".claude/skills/choreograph/SKILL.md": {
+    "module": "core",
+    "sha256": "ba4366cfdc002e5d9c3e5d3c2cd5ec79d0f40f1bbba1611819f1b9d49d8a7b12"
+  },
+  ".claude/skills/http-attack/LICENSE": {
+    "module": "profile:backend",
+    "sha256": "fabc0e38c17a1ea6d9784c68a38a4eaf74dbb99fb3cc4af834cf7f396df99734"
+  },
+  ".claude/skills/http-attack/NOTICES.md": {
+    "module": "profile:backend",
+    "sha256": "7a1cda14c7326add7aadc49089409b466e5aead8fe00690d3951ae0f941d576b"
+  },
+  ".claude/skills/http-attack/SKILL.md": {
+    "module": "profile:backend",
+    "sha256": "d165938b72742254f432df85a2d9e8d206e1cb2fcbb150a047d2310e93b56d48"
+  },
+  ".claude/skills/http-attack/references/fixes.md": {
+    "module": "profile:backend",
+    "sha256": "ceafbe0ae25408fa98865441efc4242b4a29ec375948bd94e4b5c966f179c513"
+  },
+  ".claude/skills/http-attack/scripts/http-attack.mjs": {
+    "module": "profile:backend",
+    "sha256": "5dd619a5ed1c89f67cc06f2e5d668756b6b91ce0fa1e5f5fd48cb6f010cf78cb"
+  },
+  ".claude/skills/http-attack/scripts/lib/args.mjs": {
+    "module": "profile:backend",
+    "sha256": "94eccdb43127bc88a7286fb3a8d04ee8bbbf743aaa637e6a7103bfb9cfce15e8"
+  },
+  ".claude/skills/http-attack/scripts/lib/body.mjs": {
+    "module": "profile:backend",
+    "sha256": "12c0bccfb688c0ae5e2ca044da37a2cb314ad68814e269b14aca69d6fe08b1f1"
+  },
+  ".claude/skills/http-attack/scripts/lib/cli.mjs": {
+    "module": "profile:backend",
+    "sha256": "34abcbadc491ef1d687a9586b6f926157d4c74748310c38f09823b812ab211ee"
+  },
+  ".claude/skills/http-attack/scripts/lib/config.mjs": {
+    "module": "profile:backend",
+    "sha256": "6f2c1ab6874f6ee7679d5c513e74ca4aa047901ba67991fd9ef0a5928a5c5157"
+  },
+  ".claude/skills/http-attack/scripts/lib/errors.mjs": {
+    "module": "profile:backend",
+    "sha256": "b928f078ace46bb8cd004fb40a81905cb92b432f3da6312edf3553fa9abc1233"
+  },
+  ".claude/skills/http-attack/scripts/lib/http.mjs": {
+    "module": "profile:backend",
+    "sha256": "0bc608f7f7330725f51a3fe6f35c18008598d45e3cce419c4519724d5431ce81"
+  },
+  ".claude/skills/http-attack/scripts/lib/openapi.mjs": {
+    "module": "profile:backend",
+    "sha256": "e54407f3dec016c77e077a9368788d27348f734c68f80284891dbe8200ede19c"
+  },
+  ".claude/skills/http-attack/scripts/lib/probes/auth.mjs": {
+    "module": "profile:backend",
+    "sha256": "a9fc630c7a1a4308ea98bc39a47bef92adf3d84ce595f44ad2e40aea21e52ef6"
+  },
+  ".claude/skills/http-attack/scripts/lib/probes/fault.mjs": {
+    "module": "profile:backend",
+    "sha256": "8d2506fe3b211dc90dff5b85f4a4902736f5d4933bfbc684d0873f9c0ebfafa2"
+  },
+  ".claude/skills/http-attack/scripts/lib/probes/input.mjs": {
+    "module": "profile:backend",
+    "sha256": "a985523d5ddaca97a9599284738df88e716b5f74437a39b72881729369d59506"
+  },
+  ".claude/skills/http-attack/scripts/lib/probes/origin.mjs": {
+    "module": "profile:backend",
+    "sha256": "08adffa72f3049f99900fea37bfbc40b627e3dd7fba920ca89a1c137e1e32015"
+  },
+  ".claude/skills/http-attack/scripts/lib/probes/parser.mjs": {
+    "module": "profile:backend",
+    "sha256": "245ac478ef94582fc3af859669fd0d732949e88a658c27e77b3eef4d580fa343"
+  },
+  ".claude/skills/http-attack/scripts/lib/probes/paths.mjs": {
+    "module": "profile:backend",
+    "sha256": "5e70aa0fd0790c684fc61734d8fb65dc3c0651a93c3cb94705616de2611b1571"
+  },
+  ".claude/skills/http-attack/scripts/lib/probes/persist.mjs": {
+    "module": "profile:backend",
+    "sha256": "a3526062d01b9be46c3396ece172af77573c29f8947e0fa11a6f775c7e3de65b"
+  },
+  ".claude/skills/http-attack/scripts/lib/probes/race.mjs": {
+    "module": "profile:backend",
+    "sha256": "aa8a077f2813da67f8d9496a3f1b3e7f410f09b0e155d99412a61d176652957a"
+  },
+  ".claude/skills/http-attack/scripts/lib/probes/resources.mjs": {
+    "module": "profile:backend",
+    "sha256": "c4972e2a9419a1f3d026f76d04c327a09f2ec2e286bc27946bf67c1a1f1a2a83"
+  },
+  ".claude/skills/http-attack/scripts/lib/probes/search.mjs": {
+    "module": "profile:backend",
+    "sha256": "fa0262bb6e8c92b997762d01f6c43edf2401187bde4b35171ecb28bbb52a97ec"
+  },
+  ".claude/skills/http-attack/scripts/lib/registry.mjs": {
+    "module": "profile:backend",
+    "sha256": "114226bc9342ae2684e5f36f3ddea74665e49396986c83c0d548055a5071886c"
+  },
+  ".claude/skills/http-attack/scripts/lib/report.mjs": {
+    "module": "profile:backend",
+    "sha256": "d1e97abab73d674284453d65d2b64d5d12fdd023ca112dc2bed0d19c6d647c59"
+  },
+  ".claude/skills/http-attack/scripts/lib/run.mjs": {
+    "module": "profile:backend",
+    "sha256": "aff89fdbcea3270ab202f4ca856d22af89606743db5eabd19ddbd9b57212a701"
+  },
+  ".claude/skills/migrations-safe/LICENSE": {
+    "module": "data",
+    "sha256": "fabc0e38c17a1ea6d9784c68a38a4eaf74dbb99fb3cc4af834cf7f396df99734"
+  },
+  ".claude/skills/migrations-safe/NOTICES.md": {
+    "module": "data",
+    "sha256": "fb020b6f4253e5eee3e94d117c9f70496c78549a05ee29755007debce59fbb02"
+  },
+  ".claude/skills/migrations-safe/SKILL.md": {
+    "module": "data",
+    "sha256": "6b6a93e04870c01e0003b8e57de5dfdebcbf9b97238d83a4f825bd72deb14fbc"
+  },
+  ".claude/skills/migrations-safe/references/db2.md": {
+    "module": "data",
+    "sha256": "e2e19a5b0053fd07b625df250e49a8a6a56d62da771eb833315bf4d34e4f3a24"
+  },
+  ".claude/skills/migrations-safe/references/mssql.md": {
+    "module": "data",
+    "sha256": "68f131be15e261ae20ed0e2254eeda53909e213f3ef5f61546f788bc7cb0cb7f"
+  },
+  ".claude/skills/migrations-safe/references/mysql.md": {
+    "module": "data",
+    "sha256": "40b94ec4c4b956b45c5192f0b0772711e3f3e4e3792a2cbe977ff78e156a0aca"
+  },
+  ".claude/skills/migrations-safe/references/oracle.md": {
+    "module": "data",
+    "sha256": "5478d687aad9fc08901a4593e3010d17e5e20834ec905f82a45e6606e37e4fdb"
+  },
+  ".claude/skills/migrations-safe/references/rehearsal.md": {
+    "module": "data",
+    "sha256": "f69b499f32d18f77bd81dde5e7e83c95d73170677b71a4d0af1090a242b77749"
+  },
+  ".claude/skills/migrations-safe/references/rules.md": {
+    "module": "data",
+    "sha256": "a45ae6ea2c24bbc196f8b74ab0278e4a65c7e95f94a8cf36f1a4107f4881e1e0"
+  },
+  ".claude/skills/migrations-safe/references/runners.md": {
+    "module": "data",
+    "sha256": "1aefa3cd113e331b683f9e5894d700a29e6ae72ace91ef9f8b91966fa9a344f0"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/args-env.mjs": {
+    "module": "data",
+    "sha256": "b0cf0f320140d80bf9b1e2c6518e24bb9332fcbfea9dd54beaf60b034ddfdf95"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/db2-rules.mjs": {
+    "module": "data",
+    "sha256": "e8f5a61a6723827f8de06c2e9401ee02cb7554b2b43f09f941b895a3a5a2fb40"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/db2.mjs": {
+    "module": "data",
+    "sha256": "dd14a7e178e97e901df53d47f3ec65acbce8ba6eb0840ea589ce0e9c9a0322c0"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/dialect-hints.mjs": {
+    "module": "data",
+    "sha256": "b07e77d5cd02e36efd0fcaa000d9c4d4dbd88bd3ed70e26595cd72c95f5431db"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/engines/db2.mjs": {
+    "module": "data",
+    "sha256": "8db6b162d07077d870086c4543d014f65ac5196e403d4d5fb26a1167c5076fbd"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/engines/index.mjs": {
+    "module": "data",
+    "sha256": "2d24c727d3f996af07bcf0e6e7cbb8bc10d2d44df843dab140f414427570de93"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/engines/mssql.mjs": {
+    "module": "data",
+    "sha256": "4df5ea415bcc2318365fede78a2dc3390d6414b6d36938e962e83c645f2b026d"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/engines/mysql.mjs": {
+    "module": "data",
+    "sha256": "84b07e0eef5d182567be387a832d74bf4f3da910f1b0700ee678b28d3c47db42"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/engines/oracle.mjs": {
+    "module": "data",
+    "sha256": "514bffe31df3205c9db15b3833f33e066fd4356b87794579bed1de87599f589c"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/engines/postgres.mjs": {
+    "module": "data",
+    "sha256": "1335a1cdb459498bd6a4751ae94402be2db4424e4c401d34db13c17503821eba"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/engines/shared.mjs": {
+    "module": "data",
+    "sha256": "1a2632f4748c717ea4edea9a454814257e7ce966dfdc2bdddbe602a2e7dadd19"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/errors.mjs": {
+    "module": "data",
+    "sha256": "c17f693318d56ddfaa2db23f66b1a2418b6a8e45829b13b855f08035e7693cdf"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/history.mjs": {
+    "module": "data",
+    "sha256": "bc529aeaffb805762e34a1faa73ff36f73b1a38908c959ee626acddb69ae95a6"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/lint-cli.mjs": {
+    "module": "data",
+    "sha256": "c221f2bb44ae236077b90b65032e50ae33a4547807b1787fea0f3eadd35aae46"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/lint.mjs": {
+    "module": "data",
+    "sha256": "380531ba4ef27a7bfcb77e83bced6180c324b7ddc4b21cc533cb98ed9edb41f7"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/mssql-rules.mjs": {
+    "module": "data",
+    "sha256": "72b020e070f3f4b480836f506f248bd3fb9c2ff6a64cda2d240852def64eb41a"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/mssql.mjs": {
+    "module": "data",
+    "sha256": "22a8d960d9fb406d73230a8184bcbe2a8a04e9250e1435816033dc260f65ca93"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/mysql-rules.mjs": {
+    "module": "data",
+    "sha256": "f51aee6b20b673c68cef7e6d507d76d11999bbfd673707a9a383797db8a6a771"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/mysql.mjs": {
+    "module": "data",
+    "sha256": "e39eaf90652c7919a6f98bede40ee5822b0e0730caa0a753bb0af38209255324"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/oracle-rules.mjs": {
+    "module": "data",
+    "sha256": "e4346dc9af051d749c9d67dec91ce562db7d624c418535836324cede0df200f7"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/oracle.mjs": {
+    "module": "data",
+    "sha256": "51d10e9c3d52e38b435c6d34045093dad7cfea9a77a0c45a45fa1ecb2418ee43"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/parse.mjs": {
+    "module": "data",
+    "sha256": "589628999ac736fc6ee72dbbd36635a10ca34635601925cd2f12e7d37e45bcd3"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/rehearse-cli.mjs": {
+    "module": "data",
+    "sha256": "eb94ade9cc56c7109ee432e6856ffef28b2f7c7dc281ca239fdce996a898042b"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/rehearse-docker.mjs": {
+    "module": "data",
+    "sha256": "a6d917aefe56a01c9a4c97a07080772103449a1e22d3d400c475663a55fdd89c"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/rehearse.mjs": {
+    "module": "data",
+    "sha256": "d239d86d02833d3aa18b327a3bcf8646c631744eb685b59d4365f173f5326408"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/report.mjs": {
+    "module": "data",
+    "sha256": "97a08e5e8767daae0fd7542bf1445332dbe45bafcf998684a8ccab41fd52f215"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/rules.mjs": {
+    "module": "data",
+    "sha256": "28e35c379f683b3ecb2a051bbdf6855c0909559d961c9bef67d97368c0509bc5"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/runners.mjs": {
+    "module": "data",
+    "sha256": "a4ea41097d11d091b533f4a98e9d6ad03245837e1031c45bddcf83e32f4c60ab"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/schema.mjs": {
+    "module": "data",
+    "sha256": "7846a2964ec883be166aacd5021b46f428bcd2314717603a581eee52fcdb545d"
+  },
+  ".claude/skills/migrations-safe/scripts/lib/server-version.mjs": {
+    "module": "data",
+    "sha256": "2cfaf76ecf2dfa73b9f9b85672b978f57c9458af970d427516301148c320e3dd"
+  },
+  ".claude/skills/migrations-safe/scripts/migration-lint.mjs": {
+    "module": "data",
+    "sha256": "6fc02eedd3b6384c4a7ad2b217ca97eacf3cefc922f0dc089e443368f47bbc8b"
+  },
+  ".claude/skills/migrations-safe/scripts/migrations-safe.mjs": {
+    "module": "data",
+    "sha256": "5121117f5b263742e1528dd89f20f805511c8faa42cdff379a25aed5c5d2a098"
+  },
+  ".claude/skills/migrations-safe/scripts/rehearse-sqlite.mjs": {
+    "module": "data",
+    "sha256": "fc139ae8b66544b7a2df9ab8642920dfbdbe85b1bddce2e7d81bd51bd9fc6787"
+  },
+  ".claude/skills/migrations-safe/scripts/rehearse.mjs": {
+    "module": "data",
+    "sha256": "5711b313d2a499e27ecdc31a208cbd87966f1e16b697de913e79e12f0f8c404a"
+  },
+  ".claude/skills/remove-animations/LICENSE": {
+    "module": "core",
+    "sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
+  },
+  ".claude/skills/remove-animations/SKILL.md": {
+    "module": "core",
+    "sha256": "66f4a15d59672bdf5f1098e21ccbf4b559d97a2d851a04bd701925a57b9e9f7f"
+  },
+  ".claude/stacks/node-ts.md": {
+    "module": "core",
+    "sha256": "d609e2369bceeda1ac2705050b4354cbc5590e7763b1302a099d44d336804b7c"
+  },
+  ".claude/templates/adr.md": {
+    "module": "core",
+    "sha256": "343b210176b0ba25382da9698c17392ccffc09f6b6e67a3a5c04b5930f0e261e"
+  },
+  ".claude/templates/asvs-level-1.md": {
+    "module": "core",
+    "sha256": "e6551eaa4ed9b24bc085d83690a1d4924b326b7888fe672c45b0f478dc51a061"
+  },
+  ".claude/templates/card.md": {
+    "module": "core",
+    "sha256": "e8ec4e77bbe200b6f73e6889272a4fcee5e5844c1d0b779a6bb6e47b741408d0"
+  },
+  ".claude/templates/eslint-readability.mjs": {
+    "module": "core",
+    "sha256": "d7037bd854cd925e0c0e6da57a511399413e59f59eac357110da9635fd009bb9"
+  },
+  ".claude/templates/infra-cost.md": {
+    "module": "infra",
+    "sha256": "11bd58083fb6446c6337d5f440a563e2c697ec2bb5e07322cd996b30fdb29a34"
+  },
+  ".claude/templates/load-test.md": {
+    "module": "api",
+    "sha256": "24a08977bc51e6660bd835830eea6fd0e366d9d50309527579b1a94a58728303"
+  },
+  ".claude/templates/runbook.md": {
+    "module": "infra",
+    "sha256": "2919f5b26e7b953401364fe736344e451bf66e2aba02493d29b27155526f6586"
+  },
+  ".claude/templates/system-design.md": {
+    "module": "core",
+    "sha256": "487db8145f88c5827c9e1850d04f2738c55147a9084847e895014118d0ffe204"
+  },
+  ".claude/tools/affected.mjs": {
+    "module": "core",
+    "sha256": "cf5bf19497713b237b96a6d333e9e0222bcbcaa65f91b3b41fc733316cd5d80d"
+  },
+  ".claude/tools/agents-running.mjs": {
+    "module": "core",
+    "sha256": "e0296fd4df4204972e4b4083373d9ee33524ebd58be82f3fe932d98b1384b89e"
+  },
+  ".claude/tools/app.mjs": {
+    "module": "core",
+    "sha256": "41cbc26f1a44d3715b3dad00f882e31cbc5bfbb057cdc02042d4e77262c680b3"
+  },
+  ".claude/tools/attack.mjs": {
+    "module": "profile:backend",
+    "sha256": "aff7b83570624cc64c876e0e56b13509bc1cb5aa5cfd0221fddd6e5c4f7489e6"
+  },
+  ".claude/tools/bar.mjs": {
+    "module": "core",
+    "sha256": "2d23edb689f1d4bf728bf39bbdc302b4c323a6cd292943e1fffce619fd3b9430"
+  },
+  ".claude/tools/browser-lock.mjs": {
+    "module": "core",
+    "sha256": "e2b9484e0cc85e4df999370f3c3a1aba9fae8d95d5d2b859d32e17ee7cc3dcea"
+  },
+  ".claude/tools/card-cost.mjs": {
+    "module": "core",
+    "sha256": "b2d62a8800db88ef3166228c21e77e7fc6e44729bf6c3d49e1ffe428d15e0c6c"
+  },
+  ".claude/tools/card-doc.mjs": {
+    "module": "core",
+    "sha256": "946991310048330861edab3d6ba55ca4134e17c0c4599d9b356492098fcdfa41"
+  },
+  ".claude/tools/card-view.mjs": {
+    "module": "core",
+    "sha256": "8e108836a81f5b3d717a62b6857b44930c61121ef836d9e1a866b535a43b6dfc"
+  },
+  ".claude/tools/card.mjs": {
+    "module": "core",
+    "sha256": "e1f8e61705c08df063c3a9b51dec18697d66c19b006d0ceb4e19ef7509a3cc7e"
+  },
+  ".claude/tools/close.mjs": {
+    "module": "core",
+    "sha256": "2dfa98a32f94c2048ce5f92f9bb55ddd09402e2ad7d3018e8afe9d5999441b4d"
+  },
+  ".claude/tools/code-language.mjs": {
+    "module": "core",
+    "sha256": "226ede570b532b518225f59c68e3351ef15ea338e7f0187c9fe610c677f5c366"
+  },
+  ".claude/tools/component-set.mjs": {
+    "module": "core",
+    "sha256": "0be963ab74d78b4ec21ec474ad8fe7dba947d2be4163c7d418d648e1201429de"
+  },
+  ".claude/tools/copy-tree.mjs": {
+    "module": "core",
+    "sha256": "ed9d3c00f6431bc0a20f0385802aac9d5c432f4913eb9d9e597e6cee7975cac7"
+  },
+  ".claude/tools/delegate-rule.mjs": {
+    "module": "core",
+    "sha256": "4ac385ce438ea82783a155742914f978124249bcff077d06ca80780c94613f08"
+  },
+  ".claude/tools/doctor.mjs": {
+    "module": "core",
+    "sha256": "7d7817ee45bdea0f0c213e5f76b9fd99cf443c903b531523cd9b796dccd46414"
+  },
+  ".claude/tools/final-line.mjs": {
+    "module": "core",
+    "sha256": "73bcebaf0b9a3dd8b2b28be21b12f7b9d1263c4554e8a275f3568a7133419025"
+  },
+  ".claude/tools/gate-checks.mjs": {
+    "module": "core",
+    "sha256": "712aa117f0217ad10e62de9ddc96d6dfe382e3ae76b77745289f46cfc8aede6f"
+  },
+  ".claude/tools/guard-paths.mjs": {
+    "module": "core",
+    "sha256": "39fec2db153384de499d4d537e2bed8343a21a2adcf649010d3fdf304f98b1e6"
+  },
+  ".claude/tools/help.mjs": {
+    "module": "core",
+    "sha256": "9d55e1b76ff7567af5e6c5e4e71eed6d0bf1d4e50e42d4d8d9676241af8e07e9"
+  },
+  ".claude/tools/hook-dispatch.mjs": {
+    "module": "core",
+    "sha256": "f552e6e310d5e2ce116a7cda5bf7e9a032d7ed9e9eeae75409be81225f19653d"
+  },
+  ".claude/tools/hook-worker.mjs": {
+    "module": "core",
+    "sha256": "ab438b1b23d21424e00f04dc81c5b544bc08fdb6b73dc07b2c4ee91d3d5ec325"
+  },
+  ".claude/tools/hygiene.mjs": {
+    "module": "core",
+    "sha256": "5b37505db3d2861b113dd1d81ef87a9c9e73aae1a7c79f7266b70d6cbc91bc72"
+  },
+  ".claude/tools/image-view.py": {
+    "module": "core",
+    "sha256": "0a16fba5d2101801dfa2c4ea810b01cb71d07bb586ca20ad65833b74dd6728a5"
+  },
+  ".claude/tools/importers.mjs": {
+    "module": "core",
+    "sha256": "f8119b58d0ac8cf0fd5bb8358cd12289cbb5685504217a15e05c1024ca9f10cf"
+  },
+  ".claude/tools/information.mjs": {
+    "module": "core",
+    "sha256": "1daaf3a4e39b2147e34ab53addfce8f8678d40bc3e03f0afd8a6f8dde7056604"
+  },
+  ".claude/tools/install.mjs": {
+    "module": "core",
+    "sha256": "7037ca4c422e7591a0d78d1f19b2b42b08bb50466778389d31a35af7e1587eee"
+  },
+  ".claude/tools/judge-context.mjs": {
+    "module": "core",
+    "sha256": "e5801f997cff00ca273acf123abff79171956499a018eb931c45225cf643a0e0"
+  },
+  ".claude/tools/kit-notes.mjs": {
+    "module": "core",
+    "sha256": "4139170b1169f4e73acb4c445b86708d954c3a6b33627767b372f027e6f43990"
+  },
+  ".claude/tools/kit.mjs": {
+    "module": "core",
+    "sha256": "11bb9f8dea0c1fdd4539594495739e740f935323f783fbcdb0f9bf7252328280"
+  },
+  ".claude/tools/legal-check.mjs": {
+    "module": "core",
+    "sha256": "4be186bd9791fd4eaea481aed7ab84124ca19fe737b5bfb7c0c8b5e491c0f3dc"
+  },
+  ".claude/tools/log.mjs": {
+    "module": "core",
+    "sha256": "108fe9ab783d9c8ea53d4e57025e7fbb641db21dc4a031f7d5034c816d8cccc4"
+  },
+  ".claude/tools/migrations.mjs": {
+    "module": "core",
+    "sha256": "1b5da60a85b1bd0224a51de152ca6962ac8078888c131757effcbdc26e93d244"
+  },
+  ".claude/tools/mutate.mjs": {
+    "module": "core",
+    "sha256": "f5c7cee9540e0b603d2b6dacedd0cd8e38d1ef6885472ed7384849417f643474"
+  },
+  ".claude/tools/once.mjs": {
+    "module": "core",
+    "sha256": "c3a7fb17528b86e4458527fe9b8a2d4856ddf4ab685fd9ab8a2cf1ed1eb1d874"
+  },
+  ".claude/tools/out-of-scope.mjs": {
+    "module": "core",
+    "sha256": "5d95dfb0b10890b5cacea7b2d05c884e4ce281bc7fcfbb30b7d24cc800438284"
+  },
+  ".claude/tools/overdesign.mjs": {
+    "module": "core",
+    "sha256": "bd41ba755308a8eda2cea78b6b87283f8c28a3c6726db0a4339ef10508e660a3"
+  },
+  ".claude/tools/plan.mjs": {
+    "module": "core",
+    "sha256": "3e9fb39bc1f6e649b42c6a560f6a045466c867fe33431b2705e2913cfbfce466"
+  },
+  ".claude/tools/public-bar.mjs": {
+    "module": "core",
+    "sha256": "798f3d0e51434d47409542ac935ee94f1b44fbe93d0c77976b8e12576ede1e18"
+  },
+  ".claude/tools/repeat.mjs": {
+    "module": "core",
+    "sha256": "d66b233bffcc0f3cb999651e6d426a3c725f860ccc3fe1b5c9cd29520304a7ef"
+  },
+  ".claude/tools/required.mjs": {
+    "module": "core",
+    "sha256": "e5b84c43f7c579f25e2f04cc5ed9cbb3566616ea0dbcaf82c4e1dba4ca4df722"
+  },
+  ".claude/tools/review-range.mjs": {
+    "module": "core",
+    "sha256": "ff4543ae5fae1d4d54fff10737420ad33f67bf30984edc79f28f3d58d3ce57cc"
+  },
+  ".claude/tools/risk.mjs": {
+    "module": "core",
+    "sha256": "474f24f2df18f7d88fd86515d3858350d753bb514079a4b099c6ba05d7132504"
+  },
+  ".claude/tools/shell-words.mjs": {
+    "module": "core",
+    "sha256": "5c8f4ceb628996205b2b46656f9c66302948bdd0b3eeb1e0971b956e68da7c03"
+  },
+  ".claude/tools/shell-writes.mjs": {
+    "module": "core",
+    "sha256": "26a9880efb01bb29f448d0b8ec95d6a4e3de779d364e555608a19dfab2afa5e5"
+  },
+  ".claude/tools/signals.mjs": {
+    "module": "core",
+    "sha256": "674a71ca31dccf370ed5d92265d94bd1c5b6f0d4c2b4fdefee2cdfbc98b0d94c"
+  },
+  ".claude/tools/transcript.mjs": {
+    "module": "core",
+    "sha256": "e24786914d3a2e552d21a92ad40defc6fa65a2bbd700fa5c8239cf6bf6aa6230"
+  },
+  ".claude/tools/tree-snapshot.mjs": {
+    "module": "core",
+    "sha256": "6a564c6c913edc4d134d3cb56b5e3c34b7c2478e16d17efd6b729f9b9b6bea7f"
+  },
+  ".claude/tools/trim.mjs": {
+    "module": "core",
+    "sha256": "cb85b39974754da688c418dd085cc9f93423209cb88a192a24eebacc3e9e85ab"
+  },
+  ".claude/tools/verify.mjs": {
+    "module": "core",
+    "sha256": "650ea90b432027c678f2893a4428b86b4215751278629fe797a4bda55eba3d18"
+  },
+  ".claude/tools/wait.mjs": {
+    "module": "core",
+    "sha256": "4a4b6cf397409f683974f2dff568a639a76c81af3649b7780c2de4a01d9ebf21"
+  },
+  ".claude/tools/worktrees.mjs": {
+    "module": "core",
+    "sha256": "b1d4b90aae000f3cebf6afbc1b9bdbbbe854403e8b38aa198f17f855cf0e1d04"
+  }
+}
