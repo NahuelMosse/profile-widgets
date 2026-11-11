@@ -8,6 +8,13 @@ import { GET } from "../api/profile/[name].mjs";
 const root = new URL("../", import.meta.url);
 const read = (path) => readFileSync(new URL(path, root), "utf8");
 const FRAMEWORK_CONFIGS = /^(next|nuxt|vite|astro|svelte|remix|gatsby|angular|webpack|rollup)\.config\./;
+const MIN_ACTION_MAJOR = 5;
+
+// The major of an action the workflow uses, or null when it is absent.
+const actionMajor = (workflow, action) => {
+  const found = workflow.match(new RegExp(`uses: ${action}@v(\\d+)`));
+  return found ? Number(found[1]) : null;
+};
 
 // A request with its own connection, closed when the answer ends.
 const call = (base, path, method = "GET") => new Promise((resolve, reject) => {
@@ -40,7 +47,7 @@ function startDevServer() {
   return { child, url };
 }
 
-test("the repo deploys on Vercel with no build and no framework @PW-1-S3 @PW-1-ASM-05", async () => {
+test("the repo deploys on Vercel with no build and no framework @PW-6-S1 @PW-6-ASM-01 @PW-1-S3 @PW-1-ASM-05", async () => {
   const pkg = JSON.parse(read("package.json"));
   assert.equal(pkg.type, "module");
   assert.equal(pkg.private, true);
@@ -62,8 +69,11 @@ test("the repo deploys on Vercel with no build and no framework @PW-1-S3 @PW-1-A
   const ci = read(".github/workflows/ci.yml");
   assert.match(ci, /node-version: 24/);
   assert.match(ci, /run: node --test --test-force-exit test\/\*\.test\.mjs/);
-  assert.match(ci, /uses: actions\/checkout@v5/);
-  assert.match(ci, /uses: actions\/setup-node@v5/);
+  for (const action of ["actions/checkout", "actions/setup-node"]) {
+    const major = actionMajor(ci, action);
+    assert.notEqual(major, null, `${action} is used`);
+    assert.ok(major >= MIN_ACTION_MAJOR, `${action} is at v${MIN_ACTION_MAJOR} or newer`);
+  }
 
   const readme = read("README.md");
   for (const text of ["https://lab.nawi.dev/api/profile/streak.svg?theme=dark", "<picture>", "prefers-color-scheme: dark", "GITHUB_TOKEN", "Framework Preset", "Other", "views"])
