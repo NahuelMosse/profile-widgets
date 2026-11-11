@@ -25,7 +25,7 @@ not_read: none (no attachments or links)
 ```
 suite: node --test --test-force-exit test/*.test.mjs
 lint: node --check src/modules/widgets/domain/draw.mjs
-mutate src/modules/widgets/domain/draw.mjs: node --test --test-force-exit test/widgets.test.mjs test/widgets-v2.test.mjs
+mutate src/modules/widgets/domain/draw.mjs: node --test --test-force-exit test/widgets.test.mjs test/widgets-v2.test.mjs test/widgets-v2-limits.test.mjs
 mutate src/modules/widgets/presentation/respond.mjs: node --test --test-force-exit test/api.test.mjs test/api-errors.test.mjs
 app: node scripts/dev.mjs
 attacks: node .claude/tools/attack.mjs --json --read "/api/profile/streak.svg" --item-path "/api/profile/{id}.svg"
@@ -44,3 +44,7 @@ plain: the SVG widgets are images drawn exactly like the profile live.mjs draws 
 
 - L1 · los widgets los podes pasar por el kit en modo poc para que se vean bien todos juntos en el readme porfa
 - L2 · 2026-11-11 · replaces: test/widgets-card.test.mjs "each README widget draws from its data in both themes @PW-1-S1 @PW-1-ASM-01" · the drawings changed in NM-1 (sizes, frame, band, type scale), so its golden files and coordinates describe drawings that no longer exist · by: test/widgets-v2.test.mjs "each widget draws what the profile's new live.mjs draws, in both themes, full width 1012 and thirds 337 by 176 @PW-2-S1 @PW-2-ASM-01"
+- L3 · 2026-11-11 · replaces: test/widgets-limits.test.mjs "the drawings hold at the edges of their numbers @PW-1-S1 @PW-1-ASM-01" · the drawings changed in NM-1, so its coordinates describe drawings that no longer exist · by: test/widgets-v2-limits.test.mjs "the drawings hold at the edges of their numbers @PW-2-S1 @PW-2-ASM-01"
+- L4 · 2026-11-11 · replaces: test/widgets-limits.test.mjs "the download counts hold at their windows @PW-1-S1 @PW-1-ASM-01" · the drawings changed in NM-1, so its coordinates describe drawings that no longer exist · by: test/widgets-v2-limits.test.mjs "the download counts hold at their windows @PW-2-S1 @PW-2-ASM-01"
+- L5 · 2026-11-11 · replaces: test/widgets-limits.test.mjs "the building card holds at its limits @PW-1-S1 @PW-1-ASM-01" · the drawings changed in NM-1, so its coordinates describe drawings that no longer exist · by: test/widgets-v2-limits.test.mjs "the building card holds at its limits @PW-2-S1 @PW-2-ASM-01"
+- L6 · 2026-11-11 · replaces: test/widgets-windows.test.mjs "a log-scale level changes exactly at its boundary and a full window has no empty week @PW-1-S1 @PW-1-ASM-01" · the drawings changed in NM-1, so its coordinates describe drawings that no longer exist · by: test/widgets-v2-limits.test.mjs "a log-scale level changes exactly at its boundary and a full window has no empty week @PW-2-S1 @PW-2-ASM-01"
