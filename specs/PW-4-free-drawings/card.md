@@ -28,7 +28,7 @@ not_read: none (no attachments or links)
 ```
 suite: node --test --test-force-exit test/*.test.mjs
 lint: node --check src/modules/widgets/domain/draw.mjs
-mutate src/modules/widgets/domain/draw.mjs: node --test --test-force-exit test/widgets.test.mjs test/widgets-free.test.mjs test/widgets-free-limits.test.mjs
+mutate src/modules/widgets/domain/draw.mjs: node --test --test-force-exit test/widgets.test.mjs test/widgets-free.test.mjs test/widgets-free-limits.test.mjs test/api-free.test.mjs
 app: node scripts/dev.mjs
 attacks: node .claude/tools/attack.mjs --json --read "/api/profile/streak.svg" --item-path "/api/profile/{id}.svg"
 refactor-tests: the drawings go back to PW-1's, so the PW-2 tests that compare against golden-v2 and the v2 coordinates, and the two PW-1/PW-3 tests that read golden-v2 or the v2 height, are contradicted; their replacements carry their tags and the old tests are removed from their files
