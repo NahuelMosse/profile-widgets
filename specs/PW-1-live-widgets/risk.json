@@ -27,5 +27,14 @@
     "README.md",
     "test/deploy.test.mjs"
   ],
-  "tasks": 3
+  "tasks": 3,
+  "escalated": {
+    "review": "high",
+    "lenses": [
+      "contract"
+    ],
+    "why": [
+      "src/modules/widgets/domain/font.mjs is shared code (imported by src/modules/widgets/domain/themes.mjs) and `## Tasks` does not name it"
+    ]
+  }
 }
