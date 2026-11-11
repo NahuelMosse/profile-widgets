@@ -34,7 +34,7 @@ not_read: none (no attachments or links)
 ```
 suite: node --test --test-force-exit test/*.test.mjs
 lint: node --check src/modules/widgets/domain/draw.mjs
-mutate src/modules/widgets/domain/draw.mjs: node --test --test-force-exit test/widgets.test.mjs test/widgets-card.test.mjs
+mutate src/modules/widgets/domain/draw.mjs: node --test --test-force-exit test/widgets.test.mjs test/widgets-card.test.mjs test/widgets-limits.test.mjs
 mutate src/modules/widgets/presentation/respond.mjs: node --test --test-force-exit test/api.test.mjs
 app: node scripts/dev.mjs
 attacks: node .claude/tools/attack.mjs --json --read "/api/profile/streak.svg" --read "/api/profile/nope.svg"
