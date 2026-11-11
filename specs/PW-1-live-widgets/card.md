@@ -34,7 +34,7 @@ not_read: none (no attachments or links)
 ```
 suite: node --test --test-force-exit test/*.test.mjs
 lint: node --check src/modules/widgets/domain/draw.mjs
-mutate src/modules/widgets/domain/draw.mjs: node --test --test-force-exit test/widgets.test.mjs
+mutate src/modules/widgets/domain/draw.mjs: node --test --test-force-exit test/widgets.test.mjs test/widgets-card.test.mjs
 mutate src/modules/widgets/presentation/respond.mjs: node --test --test-force-exit test/api.test.mjs
 app: node scripts/dev.mjs
 attacks: node .claude/tools/attack.mjs --json --read "/api/profile/streak.svg" --read "/api/profile/nope.svg"
@@ -55,3 +55,8 @@ no-visual: the SVG widgets are images whose drawing is fixed by golden files fro
 - L2 · 2026-11-11 · replaces: test/widgets.test.mjs "each README widget draws from its data in both themes @PW-1-S1 @PW-1-ASM-01" · two assertions are wrong, not the app: the card text legitimately stays whole in the aria-label and the title, and the hairline attribute is y1, not y · by: test/widgets-card.test.mjs "each README widget draws from its data in both themes @PW-1-S1 @PW-1-ASM-01"
 - L3 · 2026-11-11 · replaces: test/deploy.test.mjs "the repo deploys on Vercel with no build and no framework @PW-1-S3 @PW-1-ASM-05" · its global fetch against the child dev server aborts Node on Windows at the forced exit after every assertion passed · by: test/deploy-server.test.mjs "the repo deploys on Vercel with no build and no framework @PW-1-S3 @PW-1-ASM-05"
 - L4 · 2026-11-11 · T1-T3 · gate red · suite, mutate draw.mjs/themes.mjs, required · frozen test/widgets.test.mjs first test and test/deploy.test.mjs are wrong (replaced by test/widgets-card.test.mjs and test/deploy-server.test.mjs) but still run in test/*.test.mjs, so the unmutated suite is red and mutation cannot start; risk escalated to high (judge plan missing); UI-lens checks fire on SVG markup
+- L5 · 2026-11-11 · declared · mutate · src/modules/widgets/domain/themes.mjs · constant palettes and the embedded font, no decision
+- L6 · 2026-11-11 · declared · mutate · src/modules/widgets/data/github.mjs · network adapter: its queries are fixed strings; the tests feed the domain with recorded answers
+- L7 · 2026-11-11 · declared · mutate · src/modules/widgets/data/npm.mjs · network adapter, as github.mjs
+- L8 · 2026-11-11 · declared · mutate · api/profile/[name].mjs · Vercel entry point that only wires respond.mjs to the adapters
+- L9 · 2026-11-11 · declared · mutate · scripts/dev.mjs · the local server of the gate, not shipped
