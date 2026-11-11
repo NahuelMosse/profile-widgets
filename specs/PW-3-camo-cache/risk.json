@@ -1,0 +1,13 @@
+{
+  "size": "small",
+  "review": "low",
+  "lenses": [],
+  "modules": [],
+  "signals": [],
+  "words": [],
+  "files": [
+    "src/modules/widgets/presentation/respond.mjs",
+    "test/api-camo.test.mjs"
+  ],
+  "tasks": 1
+}

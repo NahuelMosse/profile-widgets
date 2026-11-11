@@ -29,7 +29,7 @@ The featured repositories and packages, and the English description each card sh
 
 The `views` widget is not here: the profile counts views through komarev, which counts every fetch, so a live widget would count itself. It stays on the profile's daily workflow.
 
-Responses are cached at Vercel's edge (`s-maxage=1800`, `stale-while-revalidate=86400`), so the functions stay inside the free tier. When GitHub or npm fail, the answer is `503` with `Retry-After: 300` and is not cached.
+Responses are cached at Vercel's edge (`s-maxage=1800`, `stale-while-revalidate=86400`), so the functions stay inside the free tier. `max-age=1800` is what GitHub's image proxy sees, so it refetches a widget every 30 minutes. When GitHub or npm fail, the answer is `503` with `Retry-After: 300` and is not cached.
 
 ## In a README
 

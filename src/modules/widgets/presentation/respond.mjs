@@ -4,7 +4,8 @@ import { THEME_NAMES } from "../domain/themes.mjs";
 
 const DEFAULT_THEME = "dark";
 const TEXT = "text/plain; charset=utf-8";
-const EDGE_CACHE = "public, s-maxage=1800, stale-while-revalidate=86400";
+// Vercel strips s-maxage from what it sends to clients, so GitHub's image proxy only sees max-age.
+const EDGE_CACHE = "public, max-age=1800, s-maxage=1800, stale-while-revalidate=86400";
 const RETRY_AFTER_SECONDS = "300";
 
 const describe = (name) => lists.repos[name]?.description;

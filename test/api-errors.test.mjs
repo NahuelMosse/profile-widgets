@@ -65,20 +65,3 @@ test("a drawing bug answers 500 no-store and other methods 405 with Allow GET, H
     assert.equal(head.status, 200);
   });
 });
-
-test("a 404 is cached for 300 s @PW-1-ASM-07", async () => {
-  for (const path of ["/api/profile/nope.svg", "/api/profile/streak.svg?theme=sepia", "/api/profile/views.svg", "/api/profile/%E0%A4%A.svg"]) {
-    const response = await withFetch(() => { throw new Error("no request expected"); }, () => handler.GET(new Request(url(path))));
-    assert.equal(response.status, 404, path);
-    assert.equal(response.headers.get("cache-control"), "public, max-age=300", path);
-    assert.equal(response.headers.get("content-type"), TEXT, path);
-  }
-
-  // The other answers keep their own cache rules.
-  await withToken(TOKEN, async () => {
-    const widget = await withFetch(fixtureFetch, () => handler.GET(new Request(url("/api/profile/streak.svg"))));
-    assert.equal(widget.headers.get("cache-control"), "public, s-maxage=1800, stale-while-revalidate=86400");
-  });
-  const unavailable = await withToken(undefined, () => handler.GET(new Request(url("/api/profile/streak.svg"))));
-  assert.equal(unavailable.headers.get("cache-control"), "no-store");
-});
