@@ -41,3 +41,4 @@ plain: no screen; the chip's drawing does not change
 ## Log
 
 - L1 · no seria mejor y mas seguro volver a poner el pixel y que nosotros solo le peguemos para sacar el numero?
+- L2 · 2026-11-12 · replaces: test/views-count.test.mjs "the views widget asks komarev with the User-Agent of the view it answers, github-camo included @PW-9-S1 @PW-9-ASM-01" · the requester chooses the pixel to count and the widget only to read · by: test/views-read-only.test.mjs "the views widget only reads komarev's count, passing on no User-Agent @PW-10-S1 @PW-10-ASM-01 @PW-9-S1"
