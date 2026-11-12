@@ -1,0 +1,19 @@
+{
+  "size": "large",
+  "review": "low",
+  "lenses": [],
+  "modules": [],
+  "signals": [],
+  "words": [],
+  "files": [
+    "src/modules/widgets/domain/contributions-page.mjs",
+    "test/contributions-page.test.mjs",
+    "test/fixtures/github-contributions.json",
+    "src/modules/widgets/data/github.mjs",
+    "README.md",
+    "test/public-first.test.mjs",
+    "test/support/public-fetch.mjs",
+    "test/api-public-camo.test.mjs"
+  ],
+  "tasks": 3
+}
