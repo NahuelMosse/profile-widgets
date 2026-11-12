@@ -1,0 +1,20 @@
+{
+  "size": "large",
+  "review": "medium",
+  "lenses": [
+    "contract"
+  ],
+  "modules": [
+    "api"
+  ],
+  "signals": [
+    "route"
+  ],
+  "words": [],
+  "files": [
+    "src/modules/widgets/data/komarev.mjs",
+    "api/profile/[name].mjs",
+    "test/views-count.test.mjs"
+  ],
+  "tasks": 1
+}
