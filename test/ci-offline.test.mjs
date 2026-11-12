@@ -30,7 +30,7 @@ const call = (base, path, method = "GET") => new Promise((resolve, reject) => {
 
 // Starts scripts/dev.mjs on a free port and resolves with its base URL.
 function startDevServer() {
-  const child = spawn(process.execPath, ["scripts/dev.mjs"], {
+  const child = spawn(process.execPath, ["--import", new URL("test/support/offline.mjs", root).href, "scripts/dev.mjs"], {
     cwd: root,
     env: { ...process.env, PORT: "0", GITHUB_TOKEN: "" },
     stdio: ["ignore", "pipe", "inherit"],
@@ -47,7 +47,7 @@ function startDevServer() {
   return { child, url };
 }
 
-test("the repo deploys on Vercel with no build and no framework @PW-6-S1 @PW-6-ASM-01 @PW-1-S3 @PW-1-ASM-05", async () => {
+test("the repo deploys on Vercel with no build and no framework @PW-7-ASM-04 @PW-6-S1 @PW-6-ASM-01 @PW-1-S3 @PW-1-ASM-05", async () => {
   const pkg = JSON.parse(read("package.json"));
   assert.equal(pkg.type, "module");
   assert.equal(pkg.private, true);

@@ -30,7 +30,7 @@ async function withToken(token, run) {
   }
 }
 
-test("a 404 is cached for 300 s while a 200 widget is stale-served for 86400 s @PW-3-ASM-01 @PW-1-ASM-07", async () => {
+test("a 404 is cached for 300 s while a 200 widget is stale-served for 86400 s @PW-7-ASM-04 @PW-3-ASM-01 @PW-1-ASM-07", async () => {
   for (const path of ["/api/profile/nope.svg", "/api/profile/streak.svg?theme=sepia", "/api/profile/views.svg", "/api/profile/%E0%A4%A.svg"]) {
     const response = await withFetch(() => { throw new Error("no request expected"); }, () => ask(path));
     assert.equal(response.status, 404, path);
@@ -43,6 +43,8 @@ test("a 404 is cached for 300 s while a 200 widget is stale-served for 86400 s @
     const widget = await withFetch(fixtureFetch, () => ask("/api/profile/streak.svg"));
     assert.equal(widget.headers.get("cache-control"), WIDGET_CACHE);
   });
-  const unavailable = await withToken(undefined, () => ask("/api/profile/streak.svg"));
+  // With no token and GitHub unreachable the widget is unavailable.
+  const unavailable = await withToken(undefined, () => withFetch(async () => { throw new TypeError("fetch failed"); }, () => ask("/api/profile/streak.svg")));
+  assert.equal(unavailable.status, 503);
   assert.equal(unavailable.headers.get("cache-control"), "no-store");
 });

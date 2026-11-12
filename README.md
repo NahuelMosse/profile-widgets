@@ -53,11 +53,11 @@ npm run dev      # http://localhost:3000/api/profile/streak.svg?theme=dark; PORT
 npm test
 ```
 
-`GITHUB_TOKEN` is read from the environment on every request; without it the GitHub widgets answer `503`. `PROFILE_USER` overrides the GitHub user (default `NahuelMosse`).
+The GitHub data comes first from what GitHub serves with no token: the contributions calendar from the profile page (`github.com/users/<user>/contributions`, the same numbers the profile shows, private contributions included when the profile shows them) and the rest from the public REST API. `GITHUB_TOKEN`, read from the environment on every request, is the fallback when those fail (an error, the 60-requests-an-hour limit of anonymous REST calls, a profile page whose markup changed); without it such a failure answers `503`. `PROFILE_USER` overrides the GitHub user (default `NahuelMosse`).
 
 ## Vercel setup
 
 1. Import the repository as a new Vercel project (Hobby is enough).
 2. Framework Preset: **Other**. Leave the build command, the install command and the output directory empty.
-3. Environment variable `GITHUB_TOKEN`: a fine-grained personal access token with read-only access to public repositories.
+3. Environment variable `GITHUB_TOKEN` (the fallback): a fine-grained personal access token with read-only access to public repositories.
 4. Deploy. The functions are served at `/api/profile/<widget>.svg`; `lab.nawi.dev/api/profile/*` rewrites to this project.
