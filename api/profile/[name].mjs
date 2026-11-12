@@ -1,8 +1,9 @@
 import * as github from "../../src/modules/widgets/data/github.mjs";
 import * as npm from "../../src/modules/widgets/data/npm.mjs";
+import * as komarev from "../../src/modules/widgets/data/komarev.mjs";
 import { methodNotAllowed, respond } from "../../src/modules/widgets/presentation/respond.mjs";
 
-const fetchers = { ...github, ...npm };
+const fetchers = { ...github, ...npm, ...komarev };
 const NOT_FOUND_CACHE = "public, max-age=300";
 
 const toResponse = ({ status, headers, body }) => new Response(body, { status, headers });

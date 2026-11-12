@@ -1,6 +1,6 @@
 import { level, mix, SHADOW, STYLE, themeOf } from "./themes.mjs";
 
-const STATIC_WIDGETS = ["streak", "heatmap", "skyline", "building", "npm"];
+const STATIC_WIDGETS = ["streak", "heatmap", "skyline", "building", "npm", "views"];
 const PREFIXED_WIDGETS = [
   { prefix: "npm-", kind: "npm-package", list: "npm" },
   { prefix: "repo-", kind: "repo", list: "featured" },
@@ -32,11 +32,11 @@ function need(data, ...keys) {
 const COL = 1012, PAD = 24, GUT = 24, BAND = 176;
 const THIRDS = 3;
 
-// Image width, content width and content offset of the k-th of three images in a row.
-function slot(k) {
-  const W = Math.round(COL * 0.333);
-  const cw = (COL - 2 * PAD - (THIRDS - 1) * GUT) / THIRDS;
-  return { W, cw, x: +(PAD + k * (cw + GUT) - ((COL - THIRDS * W) / 2 + k * W)).toFixed(1) };
+// Image width, content width and content offset of the k-th of n images in a row: three, or four for the links row.
+function slot(k, n = THIRDS) {
+  const W = Math.round(COL * (n === THIRDS ? 0.333 : 0.249));
+  const cw = (COL - 2 * PAD - (n - 1) * GUT) / n;
+  return { W, cw, x: +(PAD + k * (cw + GUT) - ((COL - n * W) / 2 + k * W)).toFixed(1) };
 }
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -60,8 +60,8 @@ ${inner}</svg>
 }
 
 // A widget of a row: `inner` is drawn from x = 0 to the content width, set at the slot's offset.
-function slotDocument(index, h, label, inner) {
-  const s = slot(index);
+function slotDocument(index, h, label, inner, n = THIRDS) {
+  const s = slot(index, n);
   return svgDocument(s.W, h, label, `<g transform="translate(${s.x} 0)">${inner(s.cw)}</g>`);
 }
 
@@ -322,4 +322,14 @@ ${prEvent ? `<g class="u" style="animation-delay:.2s"><text x="${px}" y="34" fil
 <text x="${px}" y="86" fill="${T.fg}" font-size="20">${esc(prVerb)}</text>
 <text x="${px}" y="114" fill="${T.dim}" font-size="14">${esc(prRepo)} · #${prEvent.payload.number ?? prEvent.payload.pull_request?.number}</text>
 <text x="${px}" y="160" fill="${T.dim}" font-size="11">${prEvent.created_at.slice(0, 10)}</text></g>` : ""}`);
+}
+
+// Profile views: the fourth chip of the links row, under the portfolio, LinkedIn and email links.
+export function drawViews(theme, data) {
+  need(data, "count");
+  const T = themeOf(theme);
+  return slotDocument(3, 48, `Profile views: ${fmt(data.count)}`, (cw) =>
+    `<text x="0" y="16" fill="${T.red}" font-size="11" letter-spacing="2">PROFILE VIEWS</text>`
+    + `<text x="0" y="38" fill="${T.fg}" font-size="14">${fmt(data.count)}</text>`
+    + `<rect x="0" y="45" width="${cw}" height="2" fill="${T.red}" opacity=".5"/>`, 4);
 }
