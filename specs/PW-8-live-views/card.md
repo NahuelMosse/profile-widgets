@@ -51,3 +51,6 @@ plain: no screen; the views chip keeps the drawing the README gives it today
 ## Log
 
 - L1 · es que hay cosas que si se actualizan cada 30 mins estan bien, pero las visitas se deberian actualizar todo el tiempo
+- L2 · 2026-11-12 · replaces: test/widgets.test.mjs "views is not a live widget @PW-1-ASM-02" · the requester now asks for the views live · by: test/widgets-views.test.mjs "views is a live widget, drawn as the fourth chip of the links row, 252 by 48 in the 1012 column @PW-8-S2 @PW-8-ASM-02 @PW-1-ASM-02"
+- L3 · 2026-11-12 · replaces: test/api.test.mjs "an unknown widget or theme answers 404 naming the valid ones @PW-1-ASM-04" · it takes views as an unknown widget · by: test/api-unknown.test.mjs "an unknown widget or theme answers 404 naming the valid ones @PW-8-S2 @PW-1-ASM-04" (visits is the unknown name)
+- L4 · 2026-11-12 · replaces: test/api-camo-offline.test.mjs "a 404 is cached for 300 s while a 200 widget is stale-served for 86400 s @PW-7-ASM-04 @PW-3-ASM-01 @PW-1-ASM-07" · it takes views as an unknown widget · by: test/api-camo-views.test.mjs "a 404 is cached for 300 s while a 200 widget is stale-served for 86400 s @PW-8-S2 @PW-7-ASM-04 @PW-3-ASM-01 @PW-1-ASM-07" (visits is the unknown name)

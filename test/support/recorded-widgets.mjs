@@ -1,8 +1,9 @@
 import {
-  drawBuilding, drawHeatmap, drawNpm, drawNpmPackage, drawRepoCard, drawSkyline, drawStreak, drawToolCard,
+  drawBuilding, drawHeatmap, drawNpm, drawNpmPackage, drawRepoCard, drawSkyline, drawStreak, drawToolCard, drawViews,
 } from "../../src/modules/widgets/domain/draw.mjs";
 import * as github from "../../src/modules/widgets/data/github.mjs";
 import * as npm from "../../src/modules/widgets/data/npm.mjs";
+import * as komarev from "../../src/modules/widgets/data/komarev.mjs";
 import lists from "../../src/modules/widgets/data/repos.json" with { type: "json" };
 import { fixtureFetch, NOW, TOKEN } from "./stub-fetch.mjs";
 
@@ -15,6 +16,7 @@ export async function recordedWidgets() {
   const merged = await github.mergedPullRequests();
   const repos = await github.recentRepos();
   const events = await github.publicEvents();
+  const count = await komarev.profileViews();
   const packages = await Promise.all(lists.npm.map((p) => npm.npmPackage(p, today)));
   const widgets = {
     streak: (theme) => drawStreak(theme, { calendar, merged }),
@@ -22,6 +24,7 @@ export async function recordedWidgets() {
     skyline: (theme) => drawSkyline(theme, { calendar }),
     building: (theme) => drawBuilding(theme, { repos, events, descriptions: lists.repos, user: github.profileUser(), now: NOW }),
     npm: (theme) => drawNpm(theme, { packages, today }),
+    views: (theme) => drawViews(theme, { count }),
   };
   for (const [index, pkg] of packages.entries()) {
     widgets[`npm-${pkg.p}`] = (theme) => drawNpmPackage(theme, { pkg, today, index });

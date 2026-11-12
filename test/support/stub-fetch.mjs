@@ -21,6 +21,6 @@ export async function fixtureFetch(input, init = {}) {
   }
   if (hostname === "registry.npmjs.org") return json(read(`npm-registry-${pathname.slice(1)}`));
   if (hostname === "api.npmjs.org") return json(read(`npm-downloads-${pathname.split("/").at(-1)}`));
-  if (hostname === "komarev.com") return new Response("");
+  if (hostname === "komarev.com") return new Response(read("komarev-badge").body, { status: 200, headers: { "content-type": "image/svg+xml" } });
   throw new Error(`no fixture for ${init.method || "GET"} ${url}`);
 }
