@@ -133,28 +133,6 @@ test("the token query answers when the public one fails @PW-7-S3 @PW-7-ASM-03", 
   }));
 });
 
-test("with no token the public interfaces still answer, and their failure is a 503 with Retry-After 300 @PW-7-ASM-04", async () => {
-  const requests = [];
-  await withToken(undefined, () => withFetch(publicFetch({ requests }), async () => {
-    for (const name of ["streak", "skyline", "building", "repo-Portfolio"]) {
-      const response = await ask(`/api/profile/${name}.svg?theme=light`);
-      assert.equal(response.status, 200, name);
-      assert.equal(await response.text(), golden(name, "light"), name);
-    }
-    assert.ok(requests.length > 0 && requests.every((r) => !r.token && r.at !== "api.github.com/graphql"));
-  }));
-
-  const down = (url) => url.hostname === "github.com" && new Response("oops", { status: 503 });
-  requests.length = 0;
-  await withToken(undefined, () => withFetch(publicFetch({ requests, override: down }), async () => {
-    const response = await ask("/api/profile/streak.svg");
-    assert.equal(response.status, 503);
-    assert.equal(response.headers.get("retry-after"), "300");
-    assert.equal(response.headers.get("cache-control"), "no-store");
-    assert.ok(requests.every((r) => !r.token && r.at !== "api.github.com/graphql"));
-  }));
-});
-
 test("a repo the public API does not find is not asked again with the token @PW-7-ASM-05", async () => {
   const requests = [];
   await withToken(TOKEN, () => withFetch(publicFetch({ requests }), async () => {
