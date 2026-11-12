@@ -34,6 +34,7 @@ not_read: none (no attachments or links)
 suite: node --test --test-force-exit test/*.test.mjs
 lint: node --check src/modules/widgets/data/komarev.mjs src/modules/widgets/domain/draw.mjs src/modules/widgets/presentation/respond.mjs test/views.test.mjs test/widgets-views.test.mjs test/api-unknown.test.mjs test/api-camo-views.test.mjs
 mutate src/modules/widgets/data/komarev.mjs: node --test --test-force-exit test/views.test.mjs
+mutate src/modules/widgets/domain/draw.mjs: node --test --test-force-exit test/widgets-views.test.mjs test/widgets-aligned.test.mjs test/widgets-aligned-limits.test.mjs test/widgets-v2.test.mjs
 mutate src/modules/widgets/presentation/respond.mjs: node --test --test-force-exit test/views.test.mjs test/api-aligned.test.mjs test/api-unknown.test.mjs test/api-errors.test.mjs
 app: node scripts/dev.mjs
 attacks: node .claude/tools/attack.mjs --json --read "/api/profile/streak.svg" --item-path "/api/profile/{id}.svg"
