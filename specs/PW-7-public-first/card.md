@@ -52,3 +52,4 @@ plain: no screen; the widgets keep their drawings and only their data source cha
 ## Log
 
 - L1 · prefiero la dos, y todo lo que se pueda sacar con las interfaces de github dejemoslo con esas interfaces de github y como workarround lo nuestro
+- L2 · 2026-11-12 · replaces: test/api-aligned-camo.test.mjs "a widget tells GitHub's image proxy to refetch after 1800 s @PW-5-S1 @PW-5-ASM-01 @PW-4-S1 @PW-4-ASM-01 @PW-3-S1 @PW-3-ASM-01 @PW-1-S2 @PW-1-ASM-03" · it pins each widget's requests to GraphQL and the token REST calls, which GitHub's public interfaces now answer · by: test/api-public-camo.test.mjs "a widget tells GitHub's image proxy to refetch after 1800 s @PW-7-S2 @PW-5-S1 @PW-5-ASM-01 @PW-4-S1 @PW-4-ASM-01 @PW-3-S1 @PW-3-ASM-01 @PW-1-S2 @PW-1-ASM-03"
