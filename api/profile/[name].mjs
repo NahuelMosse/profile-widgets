@@ -11,8 +11,7 @@ const toResponse = ({ status, headers, body }) => new Response(body, { status, h
 // /api/profile/<name>.svg?theme=dark|light
 export async function GET(request) {
   const { pathname, searchParams } = new URL(request.url);
-  const withViewer = { ...fetchers, profileViews: () => komarev.profileViews(request.headers.get("user-agent") ?? undefined) };
-  const answer = await respond(widgetName(pathname), searchParams.get("theme") ?? undefined, withViewer);
+  const answer = await respond(widgetName(pathname), searchParams.get("theme") ?? undefined, fetchers);
   if (answer.status === 404) answer.headers = { ...answer.headers, "Cache-Control": NOT_FOUND_CACHE };
   return toResponse(answer);
 }
