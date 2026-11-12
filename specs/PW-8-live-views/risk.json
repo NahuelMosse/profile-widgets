@@ -1,0 +1,40 @@
+{
+  "size": "large",
+  "review": "medium",
+  "lenses": [
+    "contract"
+  ],
+  "modules": [
+    "api"
+  ],
+  "signals": [
+    "route",
+    "screen"
+  ],
+  "words": [],
+  "files": [
+    "src/modules/widgets/domain/draw.mjs",
+    "test/widgets-views.test.mjs",
+    "test/golden-v3/views.dark.svg",
+    "test/golden-v3/views.light.svg",
+    "src/modules/widgets/data/komarev.mjs",
+    "src/modules/widgets/presentation/respond.mjs",
+    "api/profile/[name].mjs",
+    "test/views.test.mjs",
+    "test/support/stub-fetch.mjs",
+    "test/support/recorded-widgets.mjs",
+    "test/fixtures/komarev-badge.json",
+    "test/api-unknown.test.mjs",
+    "test/api-camo-views.test.mjs"
+  ],
+  "tasks": 3,
+  "declared": [
+    {
+      "lens": "visual",
+      "why": "the views chip is drawn exactly as the README draws it today (golden files from the profile's live.mjs); this repository has no screen",
+      "files": [
+        "src/modules/widgets/domain/draw.mjs"
+      ]
+    }
+  ]
+}

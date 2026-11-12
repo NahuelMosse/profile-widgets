@@ -1,11 +1,13 @@
 import lists from "../data/repos.json" with { type: "json" };
-import { drawBuilding, drawHeatmap, drawNpm, drawNpmPackage, drawRepoCard, drawSkyline, drawStreak, drawToolCard, parseWidget, widgetNames } from "../domain/draw.mjs";
+import { drawBuilding, drawHeatmap, drawNpm, drawNpmPackage, drawRepoCard, drawSkyline, drawStreak, drawToolCard, drawViews, parseWidget, widgetNames } from "../domain/draw.mjs";
 import { THEME_NAMES } from "../domain/themes.mjs";
 
 const DEFAULT_THEME = "dark";
 const TEXT = "text/plain; charset=utf-8";
 // Vercel strips s-maxage from what it sends to clients, so GitHub's image proxy only sees max-age.
 const EDGE_CACHE = "public, max-age=1800, s-maxage=1800, stale-while-revalidate=86400";
+// The views widget is komarev's counter: GitHub's image proxy must ask for it on every view, as it does for komarev's badge.
+const NEVER_CACHED = "max-age=0, no-cache, no-store, must-revalidate";
 const RETRY_AFTER_SECONDS = "300";
 
 const describe = (name) => lists.repos[name]?.description;
@@ -48,6 +50,11 @@ const WIDGETS = {
       return { packages: await Promise.all(lists.npm.map((name) => f.npmPackage(name, today))), today };
     },
     draw: (_arg, theme, data) => drawNpm(theme, data),
+  },
+  views: {
+    load: async (_arg, f) => ({ count: await f.profileViews() }),
+    draw: (_arg, theme, data) => drawViews(theme, data),
+    cache: NEVER_CACHED,
   },
   "npm-package": {
     load: async (name, f, now) => {
@@ -106,7 +113,7 @@ export async function respond(name, theme = DEFAULT_THEME, fetchers, now = new D
   try {
     const svg = WIDGETS[widget.kind].draw(widget.arg, theme, data);
     if (svg === null) return unavailable();
-    return { status: 200, headers: { "Content-Type": "image/svg+xml; charset=utf-8", "Cache-Control": EDGE_CACHE }, body: svg };
+    return { status: 200, headers: { "Content-Type": "image/svg+xml; charset=utf-8", "Cache-Control": WIDGETS[widget.kind].cache ?? EDGE_CACHE }, body: svg };
   } catch {
     return internalError();
   }

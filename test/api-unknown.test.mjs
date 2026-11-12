@@ -24,9 +24,9 @@ async function withFetch(fetchImpl, run) {
 
 const throwingFetchers = Object.fromEntries(Object.keys(fetchers).map((key) => [key, () => { throw new Error(`${key} must not be called`); }]));
 
-test("an unknown widget or theme answers 404 naming the valid ones @PW-1-ASM-04", async () => {
+test("an unknown widget or theme answers 404 naming the valid ones @PW-8-S2 @PW-1-ASM-04", async () => {
   const names = widgetNames(lists);
-  const attempts = [["nope", "dark"], ["views", "dark"], ["streak", "sepia"], ["streak", ""], ["constructor", "dark"], ["<script>", "dark"], ["streak", "<script>"]];
+  const attempts = [["nope", "dark"], ["visits", "dark"], ["streak", "sepia"], ["streak", ""], ["constructor", "dark"], ["<script>", "dark"], ["streak", "<script>"]];
   for (const [name, theme] of attempts) {
     const answer = await respond(name, theme, throwingFetchers, NOW);
     assert.equal(answer.status, 404, `${name} ${theme}`);
@@ -39,7 +39,7 @@ test("an unknown widget or theme answers 404 naming the valid ones @PW-1-ASM-04"
     assert.equal(answer.headers["Content-Type"], TEXT);
   }
 
-  for (const path of ["/api/profile/nope.svg", "/api/profile/views.svg", "/api/profile/streak.svg?theme=sepia", "/api/profile/%E0%A4%A.svg", "/api/profile/", "/api/profile/streak.svg.svg"]) {
+  for (const path of ["/api/profile/nope.svg", "/api/profile/visits.svg", "/api/profile/streak.svg?theme=sepia", "/api/profile/%E0%A4%A.svg", "/api/profile/", "/api/profile/streak.svg.svg"]) {
     const response = await withFetch(() => { throw new Error("no request expected"); }, () => ask(path));
     assert.equal(response.status, 404, path);
     assert.equal(response.headers.get("content-type"), TEXT);
