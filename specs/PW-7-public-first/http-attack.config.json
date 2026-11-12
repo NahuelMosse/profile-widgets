@@ -1,0 +1,8 @@
+{
+  "ignore": [
+    {
+      "id": "foreign-origin-accepted",
+      "reason": "PW-1-ASM-01: the widgets are public images embedded in other sites' READMEs, so any origin may read them"
+    }
+  ]
+}

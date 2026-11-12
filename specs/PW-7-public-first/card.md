@@ -18,7 +18,7 @@ not_read: none (no attachments or links)
 
 ## Tasks
 
-- T1 · S1, PW-7-ASM-01 · src/modules/widgets/domain/contributions-page.mjs (rule), test/contributions-page.test.mjs, test/fixtures/github-contributions.json · tests: test/contributions-page.test.mjs "the profile's contributions page gives each day's count and their sum @PW-7-S1 @PW-7-ASM-01"; test/contributions-page.test.mjs "a page whose day cells do not all carry a count is refused @PW-7-ASM-01 @PW-7-ASM-03"
+- T1 · S1, PW-7-ASM-01 · src/modules/widgets/domain/contributions-page.mjs (rule), test/contributions-page.test.mjs, test/fixtures/github-contributions.json · tests: test/contributions-page.test.mjs "the profile's contributions page gives each day's count and their sum @PW-7-S1 @PW-7-ASM-01"; test/contributions-page.test.mjs "a page whose day cells do not all carry a count is refused @PW-7-ASM-01 @PW-7-ASM-03"; test/contributions-page-dates.test.mjs "a cell dated with the shape of a date but no calendar day is refused @PW-7-ASM-01"
   new: no HTML parsing exists in the module or the repo (Grep html|tool-tip|matchAll in src/); the calendar shape it returns is the one github.mjs calendar() returns today
 - T2 · S1, S2, S3, PW-7-ASM-02, PW-7-ASM-03, PW-7-ASM-04, PW-7-ASM-05 · src/modules/widgets/data/github.mjs (data), README.md, test/public-first.test.mjs, test/support/public-fetch.mjs · tests: test/public-first.test.mjs "the calendar comes from the public profile page with no token @PW-7-S1 @PW-7-ASM-01"; test/public-first.test.mjs "every datum is asked of GitHub's public interfaces first, with no token @PW-7-S2 @PW-7-ASM-02"; test/public-first.test.mjs "the token query answers when the public one fails @PW-7-S3 @PW-7-ASM-03"; test/public-first-no-token.test.mjs "with no token the public interfaces still answer, and their failure is a 503 with Retry-After 300, drawn as recorded @PW-7-ASM-04"; test/api-camo-offline.test.mjs "a 404 is cached for 300 s while a 200 widget is stale-served for 86400 s @PW-7-ASM-04 @PW-3-ASM-01 @PW-1-ASM-07"; test/ci-offline.test.mjs "the repo deploys on Vercel with no build and no framework @PW-7-ASM-04 @PW-6-S1 @PW-6-ASM-01 @PW-1-S3 @PW-1-ASM-05"; test/public-first.test.mjs "a repo the public API does not find is not asked again with the token @PW-7-ASM-05"
   reuses: src/modules/widgets/data/github.mjs graphql, rest, profileUser (the token queries stay as the fallback); test/support/stub-fetch.mjs fixtureFetch
@@ -35,11 +35,14 @@ not_read: none (no attachments or links)
 ```
 suite: node --test --test-force-exit test/*.test.mjs
 lint: node --check src/modules/widgets/domain/contributions-page.mjs src/modules/widgets/data/github.mjs test/contributions-page.test.mjs test/public-first.test.mjs test/public-first-no-token.test.mjs test/api-public-camo.test.mjs test/api-camo-offline.test.mjs test/ci-offline.test.mjs test/support/public-fetch.mjs test/support/offline.mjs
-mutate src/modules/widgets/domain/contributions-page.mjs: node --test --test-force-exit test/contributions-page.test.mjs test/public-first.test.mjs test/public-first-no-token.test.mjs
+mutate src/modules/widgets/domain/contributions-page.mjs: node --test --test-force-exit test/contributions-page.test.mjs test/contributions-page-dates.test.mjs test/public-first.test.mjs test/public-first-no-token.test.mjs
 mutate src/modules/widgets/data/github.mjs: node --test --test-force-exit test/public-first.test.mjs test/public-first-no-token.test.mjs test/api-public-camo.test.mjs test/api-aligned.test.mjs test/api-errors.test.mjs
 app: node scripts/dev.mjs
 attacks: node .claude/tools/attack.mjs --json --read "/api/profile/streak.svg" --item-path "/api/profile/{id}.svg"
 refactor-tests: the frozen camo test pins each widget's requests to GraphQL and token REST calls, and two frozen tests read a 503 from asking with no token over the real network; with the public interfaces those calls change and a no-token request reaches GitHub, so their replacements carry their tags (the no-token 503 now with GitHub unreachable) and the old tests are removed; the first PW-7-ASM-04 test drew dated cards at today's date and is replaced too
+public-allow: test/fixtures/github-contributions.json [path] · /users/NahuelMosse is the path of GitHub's public contributions page in its URL, not a local path
+public-allow: test/public-first.test.mjs [path] · /users/NahuelMosse is a GitHub URL path the test expects to be asked
+public-allow: test/support/public-fetch.mjs [path] · /users/NahuelMosse is a GitHub URL path the stub answers
 no-visual: the SVG widgets keep their drawings, fixed by the golden files; this repository has no screen
 ```
 
