@@ -34,7 +34,10 @@ const WIDGETS = {
     draw: (_arg, theme, data) => drawHeatmap(theme, data),
   },
   skyline: {
-    load: async (_arg, f) => ({ calendar: await f.calendar() }),
+    load: async (_arg, f, now) => {
+      const [calendar, lifetime] = await Promise.all([f.calendar(), f.lifetimeContributions(now)]);
+      return { calendar, lifetime };
+    },
     draw: (_arg, theme, data) => drawSkyline(theme, data),
   },
   building: {
