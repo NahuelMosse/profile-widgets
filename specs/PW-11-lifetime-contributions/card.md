@@ -37,6 +37,11 @@ mutate src/modules/widgets/presentation/respond.mjs: node --test --test-force-ex
 app: node scripts/dev.mjs
 attacks: node .claude/tools/attack.mjs --json --read "/api/profile/streak.svg" --item-path "/api/profile/{id}.svg"
 refactor-tests: PW-7's camo test lists each widget's requests, the skyline's as the last year's page only; the requester asks for every year, so its replacement carries its tags with the skyline's year pages and the old test is removed
+public-allow: test/fixtures/github-contributions-2023.json [path] · /users/NahuelMosse is the path of GitHub's public contributions page in its URL, not a local path
+public-allow: test/lifetime-contributions.test.mjs [path] · /users/NahuelMosse is a GitHub URL path the test expects to be asked
+public-allow: test/api-public-camo-lifetime.test.mjs [path] · /users/NahuelMosse is a GitHub URL path the test expects to be asked
+public-allow: test/support/public-fetch.mjs [path] · /users/NahuelMosse is a GitHub URL path the stub answers
+public-allow: test/support/stub-fetch.mjs [path] · /users/NahuelMosse is a GitHub URL path the stub answers
 no-visual: the skyline keeps its drawing; only its number and the label under it change, checked by the golden files; this repository has no screen
 ```
 
@@ -50,3 +55,4 @@ plain: no screen; the skyline keeps its drawing, its big number reads the sum an
 
 - L1 · se puede hacer que contributions sume las contribuciones de toda mi historia en gh, no solo la de los ultimos 12 meses? · hacelo
 - L2 · 2026-11-17 · replaces: test/api-public-camo.test.mjs "a widget tells GitHub's image proxy to refetch after 1800 s @PW-7-S2 @PW-5-S1 @PW-5-ASM-01 @PW-4-S1 @PW-4-ASM-01 @PW-3-S1 @PW-3-ASM-01 @PW-1-S2 @PW-1-ASM-03" · it lists the skyline's requests as the last year's page only · by: test/api-public-camo-lifetime.test.mjs "a widget tells GitHub's image proxy to refetch after 1800 s @PW-11-S1 @PW-7-S2 @PW-5-S1 @PW-5-ASM-01 @PW-4-S1 @PW-4-ASM-01 @PW-3-S1 @PW-3-ASM-01 @PW-1-S2 @PW-1-ASM-03"
+- L3 · 2026-11-17 · declared · slow-code · src/modules/widgets/data/github.mjs · one contributions page per year, asked in parallel: GitHub's public page gives one year per request and has no batch; the GraphQL fallback asks every year in one query
