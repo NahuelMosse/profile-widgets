@@ -73,10 +73,11 @@ const busiestDay = (days) => Math.max(...days.map((d) => d.contributionCount), 1
 
 // 3D skyline: each day a prism on an oblique grid, its height by contributions, rising week by week. The grid spans the
 // inner width and the height follows from the data, so the figure fills its widget.
+// The big number is every contribution since `lifetime.since` when given, else the last year's.
 export function drawSkyline(theme, data) {
   const T = themeOf(theme);
   need(data, "calendar");
-  const { calendar } = data;
+  const { calendar, lifetime } = data;
   const W = COL, MAXBAR = 104;
   const e2 = [-9.2, 6.5]; // one weekday
   const e1 = [(W - 2 * PAD - 7 * Math.abs(e2[0])) / calendar.weeks.length, 3.2]; // one week
@@ -88,7 +89,7 @@ export function drawSkyline(theme, data) {
   const H = Math.ceil(Math.max(...cells.map((c) => oy + rel(c) + e1[1] + e2[1]))) + PAD;
   cells.sort((a, b) => rel(a) - rel(b) || a.wi - b.wi);
   const P = (x, y) => `${x.toFixed(1)},${y.toFixed(1)}`;
-  const total = fmt(calendar.totalContributions);
+  const total = fmt(lifetime ? lifetime.total : calendar.totalContributions);
   const prisms = cells.map(({ wi, di, n, date, h }) => {
     const x = ox + wi * e1[0] + di * e2[0], y = oy + wi * e1[1] + di * e2[1];
     const a = [x, y], b = [x + e1[0], y + e1[1]], c = [x + e1[0] + e2[0], y + e1[1] + e2[1]], dd = [x + e2[0], y + e2[1]];
@@ -99,9 +100,10 @@ export function drawSkyline(theme, data) {
       + `<polygon points="${P(...b)} ${P(...c)} ${P(...up(c))} ${P(...up(b))}" fill="${side}"/>`
       + `<polygon points="${P(...up(a))} ${P(...up(b))} ${P(...up(c))} ${P(...up(dd))}" fill="${top}"/></g>`;
   }).join("");
-  return svgDocument(W, H, `${total} contributions in the last year, as a 3D skyline`, `${title(T, "CONTRIBUTIONS · LAST 12 MONTHS")}
+  const summary = lifetime ? `${total} contributions since ${lifetime.since}; the last 12 months as a 3D skyline` : `${total} contributions in the last year, as a 3D skyline`;
+  return svgDocument(W, H, summary, `${title(T, "CONTRIBUTIONS · LAST 12 MONTHS")}
 ${prisms}<g class="u"><text x="${PAD}" y="${H - PAD - 24}" fill="${T.red}" font-size="48">${total}</text>
-<text x="${PAD}" y="${H - PAD}" fill="${T.dim}" font-size="11" letter-spacing="2">CONTRIBUTIONS</text></g>`);
+<text x="${PAD}" y="${H - PAD}" fill="${T.dim}" font-size="11" letter-spacing="2">${lifetime ? `CONTRIBUTIONS SINCE ${lifetime.since}` : "CONTRIBUTIONS"}</text></g>`);
 }
 
 // Contribution heatmap: day labels at the inset, the grid filling the rest of the width.

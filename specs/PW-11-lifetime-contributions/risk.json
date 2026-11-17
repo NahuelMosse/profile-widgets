@@ -1,0 +1,37 @@
+{
+  "size": "large",
+  "review": "low",
+  "lenses": [],
+  "modules": [],
+  "signals": [
+    "screen"
+  ],
+  "words": [],
+  "files": [
+    "src/modules/widgets/domain/contributions-page.mjs",
+    "test/lifetime-contributions.test.mjs",
+    "test/fixtures/github-contributions-2023.json",
+    "src/modules/widgets/data/github.mjs",
+    "src/modules/widgets/domain/draw.mjs",
+    "src/modules/widgets/presentation/respond.mjs",
+    "test/support/stub-fetch.mjs",
+    "test/support/public-fetch.mjs",
+    "test/support/recorded-widgets.mjs",
+    "test/fixtures/github-profile.json",
+    "test/fixtures/github-contribution-years.json",
+    "test/golden-v3/skyline.dark.svg",
+    "test/golden-v3/skyline.light.svg",
+    "test/api-public-camo-lifetime.test.mjs"
+  ],
+  "tasks": 3,
+  "declared": [
+    {
+      "lens": "visual",
+      "why": "the skyline keeps its drawing; only its number and the label under it change, checked by the golden files; this repository has no screen",
+      "files": [
+        "src/modules/widgets/domain/draw.mjs",
+        "test/support/public-fetch.mjs"
+      ]
+    }
+  ]
+}

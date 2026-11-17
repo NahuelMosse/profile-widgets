@@ -1,0 +1,1 @@
+src/modules/widgets/domain/contributions-page.mjs:32 · “3” → “4” · “n"[^>]*>\s*(No|\d{1,@@}(?:,\d{3})*)\s+cont” · the mutant also accepts a count of four digits or more written without the thousands comma, which it still reads as the same number; GitHub writes the comma

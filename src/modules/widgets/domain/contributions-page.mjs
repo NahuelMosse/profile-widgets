@@ -28,3 +28,12 @@ export function parseContributionsPage(html) {
   }
   return { totalContributions: days.reduce((sum, day) => sum + day.contributionCount, 0), weeks };
 }
+
+const HEADING = /<h2\b[^>]*\bid="js-contribution-activity-description"[^>]*>\s*(No|\d{1,3}(?:,\d{3})*)\s+contributions?\s+in\s+(\d{4})\s*<\/h2>/;
+
+// A year's contributions page (`?from=YYYY-01-01&to=YYYY-12-31`) heads it with "N contributions in YYYY": that year's total.
+export function parseYearTotal(html, year) {
+  const [, count, heading] = html.match(HEADING) ?? [];
+  if (heading !== String(year)) throw new Error(`the contributions page changed: no "contributions in ${year}" heading`);
+  return count === "No" ? 0 : Number(count.replaceAll(",", ""));
+}

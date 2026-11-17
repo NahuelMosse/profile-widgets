@@ -13,6 +13,7 @@ export async function recordedWidgets() {
   process.env.GITHUB_TOKEN = TOKEN;
   const today = NOW.toISOString().slice(0, 10);
   const calendar = await github.calendar();
+  const lifetime = await github.lifetimeContributions(NOW);
   const merged = await github.mergedPullRequests();
   const repos = await github.recentRepos();
   const events = await github.publicEvents();
@@ -21,7 +22,7 @@ export async function recordedWidgets() {
   const widgets = {
     streak: (theme) => drawStreak(theme, { calendar, merged }),
     heatmap: (theme) => drawHeatmap(theme, { calendar }),
-    skyline: (theme) => drawSkyline(theme, { calendar }),
+    skyline: (theme) => drawSkyline(theme, { calendar, lifetime }),
     building: (theme) => drawBuilding(theme, { repos, events, descriptions: lists.repos, user: github.profileUser(), now: NOW }),
     npm: (theme) => drawNpm(theme, { packages, today }),
     views: (theme) => drawViews(theme, { count }),

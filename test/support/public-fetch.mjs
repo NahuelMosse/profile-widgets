@@ -37,7 +37,7 @@ export function publicFetch({ requests = [], override } = {}) {
     requests.push({ at: `${url.hostname}${url.pathname.replace(/range\/[^/]+/, "range")}`, token: Boolean(authorization) });
     const injected = override && (await override(url, init));
     if (injected) return injected;
-    if (url.hostname === "github.com" && url.pathname === "/users/NahuelMosse/contributions") {
+    if (url.hostname === "github.com" && url.pathname === "/users/NahuelMosse/contributions" && !url.searchParams.has("from")) {
       return new Response(contributionsPage(), { status: 200, headers: { "content-type": "text/html; charset=utf-8" } });
     }
     if (url.hostname === "api.github.com" && url.pathname === "/users/NahuelMosse/repos") {

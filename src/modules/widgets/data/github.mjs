@@ -1,4 +1,4 @@
-import { parseContributionsPage } from "../domain/contributions-page.mjs";
+import { parseContributionsPage, parseYearTotal } from "../domain/contributions-page.mjs";
 
 const API = "https://api.github.com";
 const SITE = "https://github.com";
@@ -59,6 +59,31 @@ export async function calendar() {
       return user.contributionsCollection.contributionCalendar;
     },
   );
+}
+
+// Every contribution since the year the account was created: the sum of each year's total, as its contributions page heads it.
+export async function lifetimeContributions(now = new Date()) {
+  const login = profileUser();
+  const user = await publicRest(`/users/${encodeURIComponent(login)}`);
+  if (!user) throw new Error(`user ${login} not found`);
+  const since = Number(user.created_at.slice(0, 4));
+  const years = Array.from({ length: now.getUTCFullYear() - since + 1 }, (_, i) => since + i);
+  const total = await publicFirst(
+    async () => {
+      const totals = await Promise.all(years.map(async (year) => {
+        const response = await fetch(`${SITE}/users/${encodeURIComponent(login)}/contributions?from=${year}-01-01&to=${year}-12-31`);
+        if (!response.ok) throw new Error(`contributions page ${year}: ${response.status}`);
+        return parseYearTotal(await response.text(), year);
+      }));
+      return totals.reduce((sum, n) => sum + n, 0);
+    },
+    async () => {
+      const collections = years.map((year) => `y${year}: contributionsCollection(from: "${year}-01-01T00:00:00Z", to: "${year}-12-31T23:59:59Z") { contributionCalendar { totalContributions } }`);
+      const { user: found } = await graphql(`query($login:String!){user(login:$login){${collections.join(" ")}}}`, { login });
+      return years.reduce((sum, year) => sum + found[`y${year}`].contributionCalendar.totalContributions, 0);
+    },
+  );
+  return { total, since };
 }
 
 // Merged PRs come from the search API restricted to public repos (`is:public`), so the number is the same whichever token
