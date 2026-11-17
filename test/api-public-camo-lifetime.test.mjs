@@ -40,11 +40,14 @@ async function withToken(token, run) {
   }
 }
 
-test("a widget tells GitHub's image proxy to refetch after 1800 s @PW-7-S2 @PW-5-S1 @PW-5-ASM-01 @PW-4-S1 @PW-4-ASM-01 @PW-3-S1 @PW-3-ASM-01 @PW-1-S2 @PW-1-ASM-03", async () => {
+// The skyline asks the account and one contributions page per year since 2017, the current one included.
+const YEAR_PAGES = Array.from({ length: new Date().getUTCFullYear() - 2016 }, () => "github.com/users/NahuelMosse/contributions");
+
+test("a widget tells GitHub's image proxy to refetch after 1800 s @PW-11-S1 @PW-7-S2 @PW-5-S1 @PW-5-ASM-01 @PW-4-S1 @PW-4-ASM-01 @PW-3-S1 @PW-3-ASM-01 @PW-1-S2 @PW-1-ASM-03", async () => {
   const expected = {
     streak: ["github.com/users/NahuelMosse/contributions", "api.github.com/search/issues"],
     heatmap: ["github.com/users/NahuelMosse/contributions"],
-    skyline: ["github.com/users/NahuelMosse/contributions"],
+    skyline: ["github.com/users/NahuelMosse/contributions", "api.github.com/users/NahuelMosse", ...YEAR_PAGES],
     building: ["api.github.com/users/NahuelMosse/repos", "api.github.com/users/NahuelMosse/events/public"],
     "repo-Portfolio": ["api.github.com/repos/NahuelMosse/Portfolio"],
     "tool-motion-audit": ["api.github.com/repos/NahuelMosse/motion-audit"],
