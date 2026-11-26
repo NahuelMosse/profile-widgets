@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { dayCells, fixtureFetch } from "./stub-fetch.mjs";
+import { fixtureFetch } from "./stub-fetch.mjs";
 
 const recorded = JSON.parse(readFileSync(new URL("../fixtures/github-user.json", import.meta.url), "utf8")).data.user;
 
@@ -9,7 +9,10 @@ export const recordedRepos = recorded.repositories.nodes;
 // The profile's contributions page as GitHub writes it: a cell per day and its tooltip with the count.
 export function contributionsPage(calendar = recordedCalendar) {
   const days = calendar.weeks.flatMap((week) => week.contributionDays);
-  return `<h2 class="f4 text-normal mb-2">\n  ${calendar.totalContributions.toLocaleString("en-US")}\n  contributions\n  in the last year\n</h2>\n${dayCells(days)}`;
+  const cells = days.map((day, i) => `<td tabindex="0" data-ix="${i}" style="width: 11px" data-date="${day.date}" id="contribution-day-component-${day.weekday}-${i}" data-level="0" role="gridcell" class="ContributionCalendar-day"></td>`);
+  const label = (n) => (n === 0 ? "No contributions" : `${n.toLocaleString("en-US")} contribution${n === 1 ? "" : "s"}`);
+  const tips = days.map((day, i) => `<tool-tip id="tooltip-${i}" for="contribution-day-component-${day.weekday}-${i}" popover="manual" class="sr-only position-absolute">${label(day.contributionCount)} on ${day.date}.</tool-tip>`);
+  return `<h2 class="f4 text-normal mb-2">\n  ${calendar.totalContributions.toLocaleString("en-US")}\n  contributions\n  in the last year\n</h2>\n<table><tbody><tr>${cells.join("\n")}</tr></tbody></table>\n${tips.join("\n")}\n`;
 }
 
 // The owner's repos as the public REST API lists them, most recently pushed first, with a fork among them.
