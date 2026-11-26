@@ -1,0 +1,34 @@
+{
+  "size": "large",
+  "review": "low",
+  "lenses": [],
+  "modules": [],
+  "signals": [
+    "screen"
+  ],
+  "words": [],
+  "files": [
+    "src/modules/widgets/domain/draw.mjs",
+    "test/lifetime-streak.test.mjs",
+    "src/modules/widgets/data/github.mjs",
+    "src/modules/widgets/presentation/respond.mjs",
+    "test/support/stub-fetch.mjs",
+    "test/support/public-fetch.mjs",
+    "test/support/recorded-widgets.mjs",
+    "test/fixtures/github-contribution-days.json",
+    "test/golden-v3/streak.dark.svg",
+    "test/golden-v3/streak.light.svg",
+    "test/api-public-camo-streak.test.mjs"
+  ],
+  "tasks": 3,
+  "declared": [
+    {
+      "lens": "visual",
+      "why": "the streak keeps its drawing; only its numbers and its title change, checked by the golden files; this repository has no screen",
+      "files": [
+        "src/modules/widgets/domain/draw.mjs",
+        "test/support/public-fetch.mjs"
+      ]
+    }
+  ]
+}
