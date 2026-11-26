@@ -141,16 +141,24 @@ function streaks(days) {
   return { current, longest, active };
 }
 
+// The days the streak reads: the year pages' days before the calendar's first day, then the calendar's, up to today.
+function streakDays(calendar, history) {
+  const days = daysOf(calendar);
+  return history ? [...history.days.filter((d) => d.date < days[0].date), ...days] : days;
+}
+
 // Streak and merged PRs: four numbers. Today without contributions does not break the current streak.
+// With `history` the days run from Jan 1 of `history.since`; without it, the last 12 months.
 export function drawStreak(theme, data) {
   const T = themeOf(theme);
   need(data, "calendar", "merged");
-  const { current, longest, active } = streaks(daysOf(data.calendar));
-  const { merged } = data;
+  const { current, longest, active } = streaks(streakDays(data.calendar, data.history));
+  const { merged, history } = data;
+  const span = history ? `since ${history.since}` : "in the last year";
   const W = COL, H = BAND, x0 = PAD, x1 = W - PAD, cw = (x1 - x0) / 4;
   const big = (i, n, l, c, d) => `<g class="u" style="animation-delay:${d}s"><text x="${x0 + cw * (i + 0.5)}" y="112" text-anchor="middle" fill="${c}" font-size="48">${fmt(n)}</text><text x="${x0 + cw * (i + 0.5)}" y="140" text-anchor="middle" fill="${T.dim}" font-size="11" letter-spacing="2">${l}</text></g>`;
-  return svgDocument(W, H, `Current streak ${current} days, longest ${longest}, ${active} active days in the last year, ${merged} merged pull requests in public repositories`,
-    title(T, "STREAK · LAST 12 MONTHS")
+  return svgDocument(W, H, `Current streak ${current} days, longest ${longest}, ${active} active days ${span}, ${merged} merged pull requests in public repositories`,
+    title(T, history ? `STREAK · SINCE ${history.since}` : "STREAK · LAST 12 MONTHS")
     + big(0, current, "CURRENT STREAK", T.red, 0) + big(1, longest, "LONGEST", T.fg, 0.08)
     + big(2, active, "ACTIVE DAYS", T.fg, 0.16) + big(3, merged, "MERGED PRS · PUBLIC REPOS", T.fg, 0.24)
     + [1, 2, 3].map((i) => hair(T, x0 + cw * i, 72, x0 + cw * i, 146)).join("")

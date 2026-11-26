@@ -23,9 +23,9 @@ async function requiredRepo(f, name) {
 // that a failure of the upstream and a bug of the drawing answer differently.
 const WIDGETS = {
   streak: {
-    load: async (_arg, f) => {
-      const [calendar, merged] = await Promise.all([f.calendar(), f.mergedPullRequests()]);
-      return { calendar, merged };
+    load: async (_arg, f, now) => {
+      const [calendar, merged, history] = await Promise.all([f.calendar(), f.mergedPullRequests(), f.contributionHistory(now)]);
+      return { calendar, merged, history };
     },
     draw: (_arg, theme, data) => drawStreak(theme, data),
   },

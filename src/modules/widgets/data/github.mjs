@@ -61,29 +61,54 @@ export async function calendar() {
   );
 }
 
-// Every contribution since the year the account was created: the sum of each year's total, as its contributions page heads it.
-export async function lifetimeContributions(now = new Date()) {
+// The account's creation year and every year from it to the one of `now`.
+async function accountYears(now) {
   const login = profileUser();
   const user = await publicRest(`/users/${encodeURIComponent(login)}`);
   if (!user) throw new Error(`user ${login} not found`);
   const since = Number(user.created_at.slice(0, 4));
-  const years = Array.from({ length: now.getUTCFullYear() - since + 1 }, (_, i) => since + i);
+  return { login, since, years: Array.from({ length: now.getUTCFullYear() - since + 1 }, (_, i) => since + i) };
+}
+
+// Each year's public contributions page (`?from=YYYY-01-01&to=YYYY-12-31`), asked in parallel.
+function yearPages(login, years) {
+  return Promise.all(years.map(async (year) => {
+    const response = await fetch(`${SITE}/users/${encodeURIComponent(login)}/contributions?from=${year}-01-01&to=${year}-12-31`);
+    if (!response.ok) throw new Error(`contributions page ${year}: ${response.status}`);
+    return response.text();
+  }));
+}
+
+// GraphQL's contributions collection of each year, aliased `y<year>`, asking `fields` of its calendar.
+const yearCollections = (years, fields) => years
+  .map((year) => `y${year}: contributionsCollection(from: "${year}-01-01T00:00:00Z", to: "${year}-12-31T23:59:59Z") { contributionCalendar { ${fields} } }`)
+  .join(" ");
+
+// Every contribution since the year the account was created: the sum of each year's total, as its contributions page heads it.
+export async function lifetimeContributions(now = new Date()) {
+  const { login, since, years } = await accountYears(now);
   const total = await publicFirst(
+    async () => (await yearPages(login, years)).reduce((sum, html, i) => sum + parseYearTotal(html, years[i]), 0),
     async () => {
-      const totals = await Promise.all(years.map(async (year) => {
-        const response = await fetch(`${SITE}/users/${encodeURIComponent(login)}/contributions?from=${year}-01-01&to=${year}-12-31`);
-        if (!response.ok) throw new Error(`contributions page ${year}: ${response.status}`);
-        return parseYearTotal(await response.text(), year);
-      }));
-      return totals.reduce((sum, n) => sum + n, 0);
-    },
-    async () => {
-      const collections = years.map((year) => `y${year}: contributionsCollection(from: "${year}-01-01T00:00:00Z", to: "${year}-12-31T23:59:59Z") { contributionCalendar { totalContributions } }`);
-      const { user: found } = await graphql(`query($login:String!){user(login:$login){${collections.join(" ")}}}`, { login });
-      return years.reduce((sum, year) => sum + found[`y${year}`].contributionCalendar.totalContributions, 0);
+      const { user } = await graphql(`query($login:String!){user(login:$login){${yearCollections(years, "totalContributions")}}}`, { login });
+      return years.reduce((sum, year) => sum + user[`y${year}`].contributionCalendar.totalContributions, 0);
     },
   );
   return { total, since };
+}
+
+// Every day from Jan 1 of the year the account was created to Dec 31 of the current one, as each year's contributions page
+// lays them out: the days after today are there too, with no contributions.
+export async function contributionHistory(now = new Date()) {
+  const { login, since, years } = await accountYears(now);
+  const days = await publicFirst(
+    async () => (await yearPages(login, years)).flatMap((html) => parseContributionsPage(html).weeks.flatMap((w) => w.contributionDays)),
+    async () => {
+      const { user } = await graphql(`query($login:String!){user(login:$login){${yearCollections(years, "weeks { contributionDays { date contributionCount weekday } }")}}}`, { login });
+      return years.flatMap((year) => user[`y${year}`].contributionCalendar.weeks.flatMap((w) => w.contributionDays));
+    },
+  );
+  return { since, days };
 }
 
 // Merged PRs come from the search API restricted to public repos (`is:public`), so the number is the same whichever token

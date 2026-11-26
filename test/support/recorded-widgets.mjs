@@ -14,13 +14,14 @@ export async function recordedWidgets() {
   const today = NOW.toISOString().slice(0, 10);
   const calendar = await github.calendar();
   const lifetime = await github.lifetimeContributions(NOW);
+  const history = await github.contributionHistory(NOW);
   const merged = await github.mergedPullRequests();
   const repos = await github.recentRepos();
   const events = await github.publicEvents();
   const count = await komarev.profileViews();
   const packages = await Promise.all(lists.npm.map((p) => npm.npmPackage(p, today)));
   const widgets = {
-    streak: (theme) => drawStreak(theme, { calendar, merged }),
+    streak: (theme) => drawStreak(theme, { calendar, merged, history }),
     heatmap: (theme) => drawHeatmap(theme, { calendar }),
     skyline: (theme) => drawSkyline(theme, { calendar, lifetime }),
     building: (theme) => drawBuilding(theme, { repos, events, descriptions: lists.repos, user: github.profileUser(), now: NOW }),
